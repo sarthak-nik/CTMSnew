@@ -10,56 +10,59 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class CreateNewTournament extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public DrawerLayout drawerLayout;
     public ActionBarDrawerToggle actionBarDrawerToggle;
-
+    public int noTeams, noOvers;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_create_new_tournament);
+        getSupportActionBar().setTitle("New Tournament");
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_home);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_newTournament);
         navigationView.setNavigationItemSelectedListener(this);
 
-        drawerLayout = findViewById(R.id.drawer_layout_home);
+        drawerLayout = findViewById(R.id.drawer_layout_new_tournament);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.nav_open,R.string.nav_close);
 
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        Spinner num_teams = findViewById(R.id.spinnerNumTeams);
+        Spinner num_overs = findViewById(R.id.spinnerNumOvers);
 
-        Button createNewTournament = findViewById(R.id.create_new_tournament);
-        Button viewStats = findViewById(R.id.view_statistics);
-        Button viewPrevTournament = findViewById(R.id.view_previous_tournament_details);
-
-        createNewTournament.setOnClickListener(new View.OnClickListener() {
+        num_teams.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this,CreateNewTournament.class);
-                startActivity(i);
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                noTeams = Integer.parseInt(adapterView.getSelectedItem().toString());
+                Toast.makeText(CreateNewTournament.this,"Number of Teams Selected",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                Toast.makeText(CreateNewTournament.this,"Select Number of Teams",Toast.LENGTH_SHORT).show();
             }
         });
 
-        viewStats.setOnClickListener(new View.OnClickListener() {
+        num_overs.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this,ViewStatistics.class);
-                startActivity(i);
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                noOvers = Integer.parseInt(adapterView.getSelectedItem().toString());
+                Toast.makeText(CreateNewTournament.this, "Number of Overs Selected",Toast.LENGTH_SHORT).show();
             }
-        });
 
-        viewPrevTournament.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this,ViewPreviousTournamentDetails.class);
-                startActivity(i);
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                Toast.makeText(CreateNewTournament.this,"Select Number of Overs", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -79,29 +82,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks
         switch (item.getItemId()) {
             case R.id.home_nav: {
-                drawerLayout.closeDrawer(GravityCompat.START);
-                break;
-            }
-            case  R.id.new_tournament_nav: {
-                Intent i = new Intent(MainActivity.this,CreateNewTournament.class);
+                Intent i = new Intent(CreateNewTournament.this, MainActivity.class);
                 startActivity(i);
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             }
+            case  R.id.new_tournament_nav: {
+                drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            }
             case  R.id.prev_tour_details_nav: {
-                Intent i = new Intent(MainActivity.this,ViewPreviousTournamentDetails.class);
+                Intent i = new Intent(CreateNewTournament.this,ViewPreviousTournamentDetails.class);
                 startActivity(i);
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             }
             case R.id.stats_nav: {
-                Intent i = new Intent(MainActivity.this, ViewStatistics.class);
+                Intent i = new Intent(CreateNewTournament.this, ViewStatistics.class);
                 startActivity(i);
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             }
             case R.id.settings_nav: {
-                Intent i = new Intent(MainActivity.this,AppSettings.class);
+                Intent i = new Intent(CreateNewTournament.this, AppSettings.class);
                 startActivity(i);
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
@@ -110,4 +113,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         return true;
     }
+
 }

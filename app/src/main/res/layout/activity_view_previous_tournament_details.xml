@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout_viewTour"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewPreviousTournamentDetails"
+    tools:ignore="HardcodedText">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view_viewPrevTourDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#D6D6D6"
+        android:paddingTop="15dp"
+        android:transitionGroup="false"
+        app:itemIconTint="@color/purple_500"
+        app:menu="@menu/navigation_menu" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

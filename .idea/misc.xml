@@ -3,7 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMS/app/src/main/res/layout/activity_app_settings.xml" value="0.25" />
+        <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMS/app/src/main/res/layout/activity_create_new_tournament.xml" value="0.25" />
         <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMS/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMS/app/src/main/res/layout/activity_settings.xml" value="0.2359375" />
+        <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMS/app/src/main/res/layout/activity_view_previous_tournament_details.xml" value="0.25" />
+        <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMS/app/src/main/res/layout/activity_view_statistics.xml" value="0.2359375" />
+        <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMS/app/src/main/res/layout/switch_item.xml" value="0.25" />
+        <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMS/app/src/main/res/menu/navigation_menu.xml" value="0.25" />
       </map>
     </option>
   </component>

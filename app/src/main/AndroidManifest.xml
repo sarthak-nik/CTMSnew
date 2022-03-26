@@ -10,6 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CTMS">
         <activity
+            android:name=".AppSettings"
+            android:parentActivityName=".MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ViewPreviousTournamentDetails"
+            android:parentActivityName=".MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ViewStatistics"
+            android:parentActivityName=".MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".CreateNewTournament"
+            android:parentActivityName=".MainActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
