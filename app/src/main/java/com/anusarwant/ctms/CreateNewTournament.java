@@ -7,25 +7,40 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class CreateNewTournament extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public DrawerLayout drawerLayout;
     public ActionBarDrawerToggle actionBarDrawerToggle;
     public int noTeams, noOvers;
+
+    // variable for our adapter class and array list
+    private ArrayList<Tournament> tournamentArrayList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_tournament);
         getSupportActionBar().setTitle("New Tournament");
+
+        Button generate = findViewById(R.id.genrate_tour_schedule);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_newTournament);
         navigationView.setNavigationItemSelectedListener(this);
@@ -44,7 +59,6 @@ public class CreateNewTournament extends AppCompatActivity implements Navigation
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 noTeams = Integer.parseInt(adapterView.getSelectedItem().toString());
-                Toast.makeText(CreateNewTournament.this,"Number of Teams Selected",Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -57,7 +71,6 @@ public class CreateNewTournament extends AppCompatActivity implements Navigation
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 noOvers = Integer.parseInt(adapterView.getSelectedItem().toString());
-                Toast.makeText(CreateNewTournament.this, "Number of Overs Selected",Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -65,6 +78,98 @@ public class CreateNewTournament extends AppCompatActivity implements Navigation
                 Toast.makeText(CreateNewTournament.this,"Select Number of Overs", Toast.LENGTH_SHORT).show();
             }
         });
+
+        loadData();
+
+
+        generate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText tourNameEditText = (EditText) findViewById(R.id.tournamentName);
+                String tourName = tourNameEditText.getText().toString();
+
+                if (tourName.equals("")){
+                    Toast.makeText(CreateNewTournament.this, "Tournament name cannot be blank", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (Character.isWhitespace(tourName.charAt(0)) || Character.isWhitespace(tourName.charAt(tourName.length()-1))){
+
+                    Toast.makeText(CreateNewTournament.this, "Tournament name cannot begin or end with a whitespace", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                // Check if tournament name is unique
+                // Create new tournament
+                Tournament newTour = new Tournament(noOvers,noTeams,tourName);
+
+
+                    //Create teams
+                        //Create players (captain etc too)
+                        //Add player to team
+
+                    //Add team to tournament
+                // Add tournament to arrayList
+                tournamentArrayList.add(newTour);
+
+                // Store arrayList in shared Preferences
+                saveData();
+
+                // Now the teams have been created
+
+            }
+        });
+    }
+
+    private void loadData() {
+        // method to load arraylist from shared prefs
+        // initializing our shared prefs with name as
+        // shared preferences.
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+
+        // creating a variable for gson.
+        Gson gson = new Gson();
+
+        // below line is to get to string present from our
+        // shared prefs if not present setting it as null.
+        String json = sharedPreferences.getString("tournaments", null);
+
+        Type type = new TypeToken<ArrayList<Tournament>>() {}.getType();
+
+        tournamentArrayList = gson.fromJson(json,type);
+
+        // checking if array list is null
+        if (tournamentArrayList==null) {
+            // create new array list
+            tournamentArrayList = new ArrayList<>();
+
+        }
+    }
+
+    private void saveData() {
+        // method for saving the data in array list.
+        // creating a variable for storing data in
+        // shared preferences.
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+
+        // creating a variable for editor to
+        // store data in shared preferences.
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        // creating a new variable for gson.
+        Gson gson = new Gson();
+
+        // getting data from gson and storing it in a string.
+        String json = gson.toJson(tournamentArrayList);
+
+        // below line is to save data in shared
+        // prefs in the form of string.
+        editor.putString("tournaments", json);
+
+        // below line is to apply changes
+        // and save data in shared prefs.
+        editor.apply();
+
+        // after saving data we are displaying a toast message.
+        Toast.makeText(CreateNewTournament.this, "Tournament Generated", Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -5,23 +5,44 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import org.w3c.dom.Text;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class ViewPreviousTournamentDetails extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public DrawerLayout drawerLayout;
     public ActionBarDrawerToggle actionBarDrawerToggle;
 
+    private RecyclerView tournamentRV;
+
+    // variable for our adapter class and array list
+    private TournamentAdapter adapter;
+    private ArrayList<Tournament> tournamentArrayList;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_previous_tournament_details);
         getSupportActionBar().setTitle("Previous Tournament Details");
+
+        tournamentRV = findViewById(R.id.idRVCourses);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_viewPrevTourDetails);
         navigationView.setNavigationItemSelectedListener(this);
@@ -32,6 +53,48 @@ public class ViewPreviousTournamentDetails extends AppCompatActivity implements 
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // Load Data
+        loadData();
+
+        // Build Recycler View
+        buildRecyclerView();
+    }
+
+    private void buildRecyclerView() {
+        // initializing our adapter class.
+        adapter = new TournamentAdapter(tournamentArrayList, ViewPreviousTournamentDetails.this);
+
+        // adding layout manager to our recycler view.
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        tournamentRV.setHasFixedSize(true);
+        tournamentRV.setLayoutManager(manager);
+        tournamentRV.setAdapter(adapter);
+
+    }
+
+    private void loadData() {
+        // method to load arraylist from shared prefs
+        // initializing our shared prefs with name as
+        // shared preferences.
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+
+        // creating a variable for gson.
+        Gson gson = new Gson();
+
+        // below line is to get to string present from our
+        // shared prefs if not present setting it as null.
+        String json = sharedPreferences.getString("tournaments", null);
+
+        Type type = new TypeToken<ArrayList<Tournament>>() {}.getType();
+
+        tournamentArrayList = gson.fromJson(json,type);
+
+        // checking if array list is null
+        if (tournamentArrayList==null) {
+            // create new array list
+            tournamentArrayList = new ArrayList<>();
+        }
     }
 
     @Override
