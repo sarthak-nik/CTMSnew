@@ -8,13 +8,13 @@ public class Team {
     ArrayList<Player> playersList;
     String captain;
     int wins,losses;
-    Vector<Integer> matchHistory = new Vector<Integer>();
+    Vector<Integer> matchHistory;
 
     Team(String _name)
     {
         name=_name;
         wins=losses=0;
+        playersList = new ArrayList<>();
+        matchHistory = new Vector<>();
     }
-
-
 }

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,6 +38,13 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
         Tournament modal = courseModalArrayList.get(position);
         holder.courseNameTV.setText(modal.name);
         holder.courseDescTV.setText(modal.status);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO
+            }
+        });
     }
 
     @Override

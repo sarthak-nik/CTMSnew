@@ -6,8 +6,8 @@ public class Tournament {
     String name;
     int nTeams;
     int nOvers;
-    ArrayList<Team> teams;
-    ArrayList<Match> matches;
+    ArrayList<Team> teamsArray;
+    ArrayList<Match> matchesArray;
     String status;
 
     Tournament(int novers, int nteams, String tourName){
@@ -15,6 +15,8 @@ public class Tournament {
         nOvers = novers;
         name = tourName;
         status = "Ongoing";
+        teamsArray = new ArrayList<>();
+        matchesArray = new ArrayList<>();
     }
 
 }

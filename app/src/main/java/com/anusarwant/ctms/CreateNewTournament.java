@@ -24,6 +24,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class CreateNewTournament extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -93,20 +94,44 @@ public class CreateNewTournament extends AppCompatActivity implements Navigation
                     return;
                 }
                 if (Character.isWhitespace(tourName.charAt(0)) || Character.isWhitespace(tourName.charAt(tourName.length()-1))){
-
-                    Toast.makeText(CreateNewTournament.this, "Tournament name cannot begin or end with a whitespace", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 // Check if tournament name is unique
+                for (int i = 0; i<tournamentArrayList.size(); i++){
+                    if (tourName.equals(tournamentArrayList.get(i).name)){
+                        Toast.makeText(CreateNewTournament.this, "Tournament with same name already exits!\nTry a new Name", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
                 // Create new tournament
                 Tournament newTour = new Tournament(noOvers,noTeams,tourName);
 
+                //Create teams
+                for (int i = 0; i<noTeams; i++){
+                    char x='A';
+                    x+=i;
+                    Team newTeam = new Team("Team-"+x);
 
-                    //Create teams
-                        //Create players (captain etc too)
+                    //Create players (captain etc too)
+                    for (int j=0; j<11; j++){
+                        int age = (int) (Math.random()*25)+18;
+                        Random random = new Random();
+                        double prob = random.nextFloat();
+                        if (prob<0.4){
+                            prob=-1;
+                        }
+                        else if (0.4<prob && prob<0.6){
+                            prob=0;
+                        }
+                        else prob=-1;
+                        Player newPlayer = new Player("Player"+x+j,age,random.nextFloat()>0.2,(int)prob);
+
                         //Add player to team
-
-                    //Add team to tournament
+                        newTeam.playersList.add(newPlayer);
+                    }
+                    // Add team to tournament
+                    newTour.teamsArray.add(newTeam);
+                }
                 // Add tournament to arrayList
                 tournamentArrayList.add(newTour);
 
@@ -114,6 +139,7 @@ public class CreateNewTournament extends AppCompatActivity implements Navigation
                 saveData();
 
                 // Now the teams have been created
+                // Need to Schedule tournament
 
             }
         });
