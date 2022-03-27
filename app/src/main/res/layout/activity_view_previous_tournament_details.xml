@@ -27,4 +27,12 @@
         app:itemIconTint="@color/purple_500"
         app:menu="@menu/navigation_menu" />
 
+    <TextView
+        android:id="@+id/temp_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="No Previous Tournaments"
+        android:textSize="24sp" />
+
 </androidx.drawerlayout.widget.DrawerLayout>
