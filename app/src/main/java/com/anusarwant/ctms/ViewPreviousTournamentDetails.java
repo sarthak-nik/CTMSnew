@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,6 +35,8 @@ public class ViewPreviousTournamentDetails extends AppCompatActivity implements 
     // variable for our adapter class and array list
     private TournamentAdapter adapter;
     private ArrayList<Tournament> tournamentArrayList;
+
+
 
 
     @Override
@@ -89,11 +92,16 @@ public class ViewPreviousTournamentDetails extends AppCompatActivity implements 
         Type type = new TypeToken<ArrayList<Tournament>>() {}.getType();
 
         tournamentArrayList = gson.fromJson(json,type);
-
+        //Temp textview
+        TextView tempText=findViewById(R.id.temp_textView);
         // checking if array list is null
         if (tournamentArrayList==null) {
             // create new array list
             tournamentArrayList = new ArrayList<>();
+        }
+        else{
+            tempText.setVisibility(View.INVISIBLE);
+
         }
     }
 

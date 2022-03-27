@@ -15,7 +15,8 @@
         android:alpha="0.7"
         android:contentDescription="background_image"
         android:scaleType="centerCrop"
-        android:src="@drawable/background" />
+        android:src="@drawable/background"
+        tools:ignore="ImageContrastCheck" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -60,7 +61,8 @@
                 android:text="Create New Tournament"
                 android:textAlignment="center"
                 android:textSize="16sp"
-                app:cornerRadius="50dp" />
+                app:cornerRadius="50dp"
+                tools:ignore="TextContrastCheck" />
 
             <Button
                 android:id="@+id/view_statistics"
@@ -72,7 +74,8 @@
                 android:shadowRadius="10"
                 android:text="View Statistics"
                 android:textSize="16sp"
-                app:cornerRadius="50dp" />
+                app:cornerRadius="50dp"
+                tools:ignore="TextContrastCheck" />
 
             <Button
                 android:id="@+id/view_previous_tournament_details"
@@ -84,7 +87,8 @@
                 android:shadowRadius="10"
                 android:text="View Previous Tournament Details"
                 android:textSize="16sp"
-                app:cornerRadius="50dp" />
+                app:cornerRadius="50dp"
+                tools:ignore="TextContrastCheck" />
         </LinearLayout>
     </ScrollView>
 
