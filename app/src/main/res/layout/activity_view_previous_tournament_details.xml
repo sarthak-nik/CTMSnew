@@ -11,10 +11,20 @@
 
     <!--recycler view to display our data-->
 
+    <TextView
+        android:id="@+id/temp_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="No Previous Tournaments"
+        android:textSize="24sp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/idRVCourses"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view_viewPrevTourDetails"
@@ -26,13 +36,5 @@
         android:transitionGroup="false"
         app:itemIconTint="@color/purple_500"
         app:menu="@menu/navigation_menu" />
-
-    <TextView
-        android:id="@+id/temp_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="No Previous Tournaments"
-        android:textSize="24sp" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
