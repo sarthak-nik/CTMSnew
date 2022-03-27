@@ -24,7 +24,10 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Random;
+import java.util.Vector;
 
 public class CreateNewTournament extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -124,7 +127,7 @@ public class CreateNewTournament extends AppCompatActivity implements Navigation
                             prob=0;
                         }
                         else prob=-1;
-                        Player newPlayer = new Player("Player"+x+j,age,random.nextFloat()>0.2,(int)prob);
+                        Player newPlayer = new Player("Player"+x+(j+1),age,random.nextFloat()>0.2,(int)prob);
 
                         //Add player to team
                         newTeam.playersList.add(newPlayer);
@@ -132,18 +135,37 @@ public class CreateNewTournament extends AppCompatActivity implements Navigation
                     // Add team to tournament
                     newTour.teamsArray.add(newTeam);
                 }
+
+                Vector<Integer> matchNumbers = new Vector<Integer>();
+                for (int i = 0; i< noTeams*(noTeams-1)/2; i++){
+                    matchNumbers.add(i);
+                }
+                Collections.shuffle(matchNumbers);
+                int counter=0;
+
+                // Now the teams have been created
+                // Generate Schedule of tournament
+                for (int i=0; i<noTeams; i++){
+                    for (int j=i+1; j<noTeams; j++) {
+                        Team team1 = newTour.teamsArray.get(i);
+                        Team team2 = newTour.teamsArray.get(j);
+                        Match newMatch = new Match(team1,team2);
+                        newMatch.matchNum=matchNumbers.get(counter++)+1;
+                        newTour.matchesArray.add(newMatch);
+                    }
+                }
+                Collections.sort(newTour.matchesArray,Match.matchComparator);
+
                 // Add tournament to arrayList
                 tournamentArrayList.add(newTour);
 
                 // Store arrayList in shared Preferences
                 saveData();
-
-                // Now the teams have been created
-                // Need to Schedule tournament
-
             }
         });
     }
+
+
 
     private void loadData() {
         // method to load arraylist from shared prefs
