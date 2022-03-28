@@ -19,4 +19,5 @@
         app:itemIconTint="@color/purple_500"
         app:menu="@menu/navigation_menu" />
 
+
 </androidx.drawerlayout.widget.DrawerLayout>

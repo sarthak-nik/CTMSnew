@@ -5,13 +5,15 @@ import java.util.Comparator;
 public class Match {
     int matchNum;
     Team team1,team2;
-    String winner;
+    String winner, team1score, team2score;
     String pom,highestRunScorer,highestWicketTaker;
 
     Match(Team _team1,Team _team2)
     {
         team1=_team1;
         team2=_team2;
+        team1score="Yet to Bat";
+        team2score="Yet to Bat";
     }
 
     public static Comparator<Match> matchComparator = new Comparator<Match>() {

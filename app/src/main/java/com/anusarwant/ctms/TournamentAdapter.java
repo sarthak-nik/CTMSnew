@@ -1,6 +1,7 @@
 package com.anusarwant.ctms;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +17,12 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
 
     // creating a variable for array list and context.
     private ArrayList<Tournament> courseModalArrayList;
-    private Context context;
+    public Context mContext;
 
     // creating a constructor for our variables.
-    public TournamentAdapter(ArrayList<Tournament> courseModalArrayList, Context context) {
+    public TournamentAdapter(ArrayList<Tournament> courseModalArrayList, Context mContext) {
         this.courseModalArrayList = courseModalArrayList;
-        this.context = context;
+        this.mContext = mContext;
     }
 
     @NonNull
@@ -42,7 +43,10 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO
+                Intent intent = new Intent(mContext,ViewMatchList.class);
+                intent.putExtra("tourObjPosition", holder.getAdapterPosition());
+                Toast.makeText(mContext,"Starting activity",Toast.LENGTH_SHORT).show();
+                mContext.startActivity(intent);
             }
         });
     }

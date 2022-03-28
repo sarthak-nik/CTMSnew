@@ -36,9 +36,6 @@ public class ViewPreviousTournamentDetails extends AppCompatActivity implements 
     private TournamentAdapter adapter;
     private ArrayList<Tournament> tournamentArrayList;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
