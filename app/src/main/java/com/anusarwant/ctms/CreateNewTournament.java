@@ -132,6 +132,9 @@ public class CreateNewTournament extends AppCompatActivity implements Navigation
                         //Add player to team
                         newTeam.playersList.add(newPlayer);
                     }
+                    // Sort Players according to batting bowling
+                    Collections.sort(newTeam.playersList,Player.playerComparator);
+
                     // Add team to tournament
                     newTour.teamsArray.add(newTeam);
                 }

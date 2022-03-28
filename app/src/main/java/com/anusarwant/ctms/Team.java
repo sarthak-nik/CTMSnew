@@ -7,13 +7,13 @@ public class Team {
     String name;
     ArrayList<Player> playersList;
     String captain;
-    int wins,losses;
+    int wins,losses,draws;
     Vector<Integer> matchHistory;
 
     Team(String _name)
     {
         name=_name;
-        wins=losses=0;
+        wins=losses=draws=0;
         playersList = new ArrayList<>();
         matchHistory = new Vector<>();
     }
