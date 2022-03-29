@@ -74,6 +74,13 @@ public class PointsTable extends AppCompatActivity {
             t4.setText(Integer.toString(teamsList.get(i).losses));
             t5.setText(Integer.toString(teamsList.get(i).draws));
             t6.setText(Integer.toString(teamsList.get(i).points));
+            t1.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            t2.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            t3.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            t4.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            t5.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            t6.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+
             tr1.addView(t1);
             tr1.addView(t2);
             tr1.addView(t3);
