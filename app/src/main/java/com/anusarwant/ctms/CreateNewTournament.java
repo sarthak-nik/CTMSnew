@@ -116,18 +116,30 @@ public class CreateNewTournament extends AppCompatActivity implements Navigation
                     Team newTeam = new Team("Team-"+x);
 
                     //Create players (captain etc too)
+                    int lucky= new Random().nextInt(11);
                     for (int j=0; j<11; j++){
                         int age = (int) (Math.random()*25)+18;
                         Random random = new Random();
                         double prob = random.nextFloat();
-                        if (prob<0.4){
-                            prob=-1;
+                        if (prob<0.2){
+                            prob=2;
+                        }
+                        else if (0.2<prob && prob<0.4){
+                            prob=1;
                         }
                         else if (0.4<prob && prob<0.6){
                             prob=0;
                         }
                         else prob=-1;
-                        Player newPlayer = new Player("Player"+x+(j+1),age,random.nextFloat()>0.2,(int)prob);
+                        String playerName=" ";
+
+                        if (j==lucky){
+                            playerName = "Player"+x+(j+1)+" (C)";
+                        }
+                        else {
+                            playerName="Player"+x+(j+1);
+                        }
+                        Player newPlayer = new Player(playerName,age,random.nextFloat()>0.2,(int)prob);
 
                         //Add player to team
                         newTeam.playersList.add(newPlayer);

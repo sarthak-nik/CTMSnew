@@ -6,7 +6,7 @@ public class Player {
     String name;
     int age;
     boolean isRight;
-    int role; //-1: batsman   0: all rounder  1: bowler
+    int role; //-1: batsman   0: all rounder  1: spin bowler 2: fast bowler
     int tourBallsBowled,tourRunsScored,tourWickets,tourBallsPlayed, tourFours, tourSixes, tourOuts, tourRunsGiven;
     int matchBallsBowled, matchRunsScored, matchWicketsTaken, matchBallsPlayed, matchFours, matchSixes, matchRunsGiven;
 
