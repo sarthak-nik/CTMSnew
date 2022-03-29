@@ -9,7 +9,7 @@ public class Team {
     String captain;
     int wins,losses,draws;
     int points;
-    Vector<Integer> matchHistory;
+    Vector<Integer> matchHistory;       // 1:won     0:draw     -1:lost
 
     Team(String _name)
     {

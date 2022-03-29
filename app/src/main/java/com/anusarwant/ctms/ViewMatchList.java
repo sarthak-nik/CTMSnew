@@ -84,19 +84,17 @@ public class ViewMatchList extends AppCompatActivity {
                     // Play a match
                     if (rd.nextBoolean()){
                         courseModalArrayList.get(position).matchesArray.get(i).battedFirst=courseModalArrayList.get(position).matchesArray.get(i).team1.name;
-                        target=playFirstInnings(i,courseModalArrayList.get(position).matchesArray.get(i).team1,courseModalArrayList.get(position).matchesArray.get(i).team2);
-                        playSecondInnings(target,i,courseModalArrayList.get(position).matchesArray.get(i).team2,courseModalArrayList.get(position).matchesArray.get(i).team1);
+                        target=playFirstInnings(i,courseModalArrayList.get(position).matchesArray.get(i).team1,courseModalArrayList.get(position).matchesArray.get(i).team2,1);
+                        playSecondInnings(target,i,courseModalArrayList.get(position).matchesArray.get(i).team2,courseModalArrayList.get(position).matchesArray.get(i).team1,2);
                         addToDatabase(i,courseModalArrayList.get(position).matchesArray.get(i).team1);
                         addToDatabase(i,courseModalArrayList.get(position).matchesArray.get(i).team2);
-                        saveData();
                     }
                     else{
                         courseModalArrayList.get(position).matchesArray.get(i).battedFirst=courseModalArrayList.get(position).matchesArray.get(i).team2.name;
-                        target=playFirstInnings(i,courseModalArrayList.get(position).matchesArray.get(i).team2,courseModalArrayList.get(position).matchesArray.get(i).team1);
-                        playSecondInnings(target,i,courseModalArrayList.get(position).matchesArray.get(i).team1,courseModalArrayList.get(position).matchesArray.get(i).team2);
+                        target=playFirstInnings(i,courseModalArrayList.get(position).matchesArray.get(i).team2,courseModalArrayList.get(position).matchesArray.get(i).team1,2);
+                        playSecondInnings(target,i,courseModalArrayList.get(position).matchesArray.get(i).team1,courseModalArrayList.get(position).matchesArray.get(i).team2,1);
                         addToDatabase(i,courseModalArrayList.get(position).matchesArray.get(i).team1);
                         addToDatabase(i,courseModalArrayList.get(position).matchesArray.get(i).team2);
-                        saveData();
                     }
                     courseModalArrayList.get(position).matchesArray.get(i).isDone=true;
                 }
@@ -150,7 +148,7 @@ public class ViewMatchList extends AppCompatActivity {
         }
     }
 
-    private void playSecondInnings(int target,int i, Team battingTeam, Team bowlingTeam){
+    private void playSecondInnings(int target,int i, Team battingTeam, Team bowlingTeam, int bat){
         Random r= new Random();
         float ballOutcome;
         int innningWickets=0;
@@ -166,7 +164,7 @@ public class ViewMatchList extends AppCompatActivity {
                     battingTeam.playersList.get(onStrike).matchBallsPlayed++;
                     bowlingTeam.playersList.get(bowler).matchBallsBowled++;
                 }
-                else if(ballOutcome<=0.56){
+                else if(ballOutcome<=0.6){
                     //one run
                     battingTeam.playersList.get(onStrike).matchBallsPlayed++;
                     bowlingTeam.playersList.get(bowler).matchBallsBowled++;
@@ -179,7 +177,7 @@ public class ViewMatchList extends AppCompatActivity {
                     onStrike += (nonStrike-(nonStrike=onStrike));
 
                 }
-                else if(ballOutcome<=0.76){
+                else if(ballOutcome<=0.84){
                     //two runs
                     battingTeam.playersList.get(onStrike).matchBallsPlayed++;
                     bowlingTeam.playersList.get(bowler).matchBallsBowled++;
@@ -189,7 +187,7 @@ public class ViewMatchList extends AppCompatActivity {
                     totalRuns+=2;
 
                 }
-                else if(ballOutcome<=0.775){
+                else if(ballOutcome<=0.87){
                     //three runs
                     battingTeam.playersList.get(onStrike).matchBallsPlayed++;
                     bowlingTeam.playersList.get(bowler).matchBallsBowled++;
@@ -202,7 +200,7 @@ public class ViewMatchList extends AppCompatActivity {
                     onStrike += (nonStrike-(nonStrike=onStrike));
 
                 }
-                else if(ballOutcome<=0.875){
+                else if(ballOutcome<=0.90){
                     //four
                     battingTeam.playersList.get(onStrike).matchBallsPlayed++;
                     bowlingTeam.playersList.get(bowler).matchBallsBowled++;
@@ -212,7 +210,7 @@ public class ViewMatchList extends AppCompatActivity {
                     bowlingTeam.playersList.get(bowler).matchRunsGiven+=4;
                     totalRuns+=4;
                 }
-                else if(ballOutcome<=0.925){
+                else if(ballOutcome<=0.93){
                     //six
                     battingTeam.playersList.get(onStrike).matchBallsPlayed++;
                     bowlingTeam.playersList.get(bowler).matchBallsBowled++;
@@ -242,13 +240,34 @@ public class ViewMatchList extends AppCompatActivity {
                     bowlingTeam.losses++;
                     courseModalArrayList.get(position).matchesArray.get(i).winner=battingTeam.name;
                     battingTeam.points+=2;
+                    battingTeam.matchHistory.add(1);
+                    bowlingTeam.matchHistory.add(-1);
+
+                    String teamScore = Integer.toString(totalRuns) + "/" + Integer.toString(innningWickets) + " ("+ Integer.toString(over)+"."+Integer.toString(balls+1)+")";
+                    if (bat==1){
+                        courseModalArrayList.get(position).matchesArray.get(i).team2score= teamScore;
+                    }
+                    else {
+                        courseModalArrayList.get(position).matchesArray.get(i).team1score= teamScore;
+                    }
+
                     return;
                 }
-                if (innningWickets==10){
+                if (innningWickets==10 && totalRuns !=(target-1)){
                     battingTeam.losses++;
                     bowlingTeam.wins++;
                     courseModalArrayList.get(position).matchesArray.get(i).winner=bowlingTeam.name;
                     bowlingTeam.points+=2;
+                    bowlingTeam.matchHistory.add(1);
+                    battingTeam.matchHistory.add(-1);
+
+                    String teamScore = Integer.toString(totalRuns) + "/" + Integer.toString(innningWickets) + " ("+ Integer.toString(over)+"."+Integer.toString(balls+1)+")";
+                    if (bat==1){
+                        courseModalArrayList.get(position).matchesArray.get(i).team2score= teamScore;
+                    }
+                    else {
+                        courseModalArrayList.get(position).matchesArray.get(i).team1score= teamScore;
+                    }
                     return;
                 }
             }
@@ -261,22 +280,34 @@ public class ViewMatchList extends AppCompatActivity {
             }
         }
 
+        String teamScore = Integer.toString(totalRuns) + "/" + Integer.toString(innningWickets) + " ("+ Integer.toString(courseModalArrayList.get(position).nOvers)+".0)";
+        if (bat==1){
+            courseModalArrayList.get(position).matchesArray.get(i).team2score= teamScore;
+        }
+        else {
+            courseModalArrayList.get(position).matchesArray.get(i).team1score= teamScore;
+        }
+
         // If Match Drawn
         if (totalRuns==(target-1)){
             battingTeam.draws++;
             bowlingTeam.draws++;
             battingTeam.points++;
             bowlingTeam.points++;
+            battingTeam.matchHistory.add(0);
+            bowlingTeam.matchHistory.add(0);
             return;
         }
 
         battingTeam.losses++;
         bowlingTeam.wins++;
+        battingTeam.matchHistory.add(-1);
+        bowlingTeam.matchHistory.add(1);
         courseModalArrayList.get(position).matchesArray.get(i).winner=bowlingTeam.name;
         bowlingTeam.points+=2;
     }
 
-    private int playFirstInnings(int i, Team battingTeam, Team bowlingTeam){
+    private int playFirstInnings(int i, Team battingTeam, Team bowlingTeam,int bat){
         Random r= new Random();
         float ballOutcome;
         int innningWickets=0;
@@ -365,6 +396,13 @@ public class ViewMatchList extends AppCompatActivity {
                 }
 
                 if (innningWickets==10){
+                    String teamScore = Integer.toString(totalRuns) + "/" + Integer.toString(innningWickets) + " ("+ Integer.toString(over)+"."+Integer.toString(balls+1)+")";
+                    if (bat==1){
+                        courseModalArrayList.get(position).matchesArray.get(i).team1score= teamScore;
+                    }
+                    else {
+                        courseModalArrayList.get(position).matchesArray.get(i).team2score= teamScore;
+                    }
                     return totalRuns+1;
                 }
             }
@@ -375,6 +413,13 @@ public class ViewMatchList extends AppCompatActivity {
             if (bowler<6){
                 bowler=10;
             }
+        }
+        String teamScore = Integer.toString(totalRuns) + "/" + Integer.toString(innningWickets) + " ("+ Integer.toString(courseModalArrayList.get(position).nOvers)+".0)";
+        if (bat==1){
+            courseModalArrayList.get(position).matchesArray.get(i).team1score= teamScore;
+        }
+        else {
+            courseModalArrayList.get(position).matchesArray.get(i).team2score= teamScore;
         }
         return totalRuns+1;
     }
