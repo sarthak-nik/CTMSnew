@@ -1,11 +1,13 @@
 package com.anusarwant.ctms;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -97,6 +99,7 @@ public class ViewMatchList extends AppCompatActivity {
                         addToDatabase(i,courseModalArrayList.get(position).matchesArray.get(i).team2);
                     }
                     courseModalArrayList.get(position).matchesArray.get(i).isDone=true;
+
                 }
                 courseModalArrayList.get(position).status="Completed";
                 courseModalArrayList.get(position).iscomplete=true;
