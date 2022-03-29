@@ -65,17 +65,45 @@ public class ViewMatchList extends AppCompatActivity {
                         courseModalArrayList.get(position).matchesArray.get(i).battedFirst=courseModalArrayList.get(position).matchesArray.get(i).team1.name;
                         target=playFirstInnings(i,courseModalArrayList.get(position).matchesArray.get(i).team1,courseModalArrayList.get(position).matchesArray.get(i).team2);
                         winner = playSecondInnings(target,i,courseModalArrayList.get(position).matchesArray.get(i).team2,courseModalArrayList.get(position).matchesArray.get(i).team1);
+                        addToDatabase(courseModalArrayList.get(position).matchesArray.get(i).team1);
+                        addToDatabase(courseModalArrayList.get(position).matchesArray.get(i).team2);
                     }
                     else{
                         courseModalArrayList.get(position).matchesArray.get(i).battedFirst=courseModalArrayList.get(position).matchesArray.get(i).team2.name;
                         target=playFirstInnings(i,courseModalArrayList.get(position).matchesArray.get(i).team2,courseModalArrayList.get(position).matchesArray.get(i).team1);
                         winner = playSecondInnings(target,i,courseModalArrayList.get(position).matchesArray.get(i).team1,courseModalArrayList.get(position).matchesArray.get(i).team2);
+                        addToDatabase(courseModalArrayList.get(position).matchesArray.get(i).team1);
+                        addToDatabase(courseModalArrayList.get(position).matchesArray.get(i).team2);
                     }
-                    // Add match details to database
                 }
             }
         });
       }
+
+    private void addToDatabase(Team team1) {
+        for (int i =0; i<11;i++){
+            // Update tournament stats of the player
+            team1.playersList.get(i).tourBallsPlayed+=team1.playersList.get(i).matchBallsPlayed;
+            team1.playersList.get(i).tourRunsScored+=team1.playersList.get(i).matchRunsScored;
+            team1.playersList.get(i).tourFours+=team1.playersList.get(i).matchFours;
+            team1.playersList.get(i).tourSixes+=team1.playersList.get(i).matchSixes;
+            team1.playersList.get(i).tourBallsBowled+=team1.playersList.get(i).matchBallsBowled;
+            team1.playersList.get(i).tourWickets+=team1.playersList.get(i).matchWicketsTaken;
+            team1.playersList.get(i).tourRunsGiven+=team1.playersList.get(i).matchRunsGiven;
+
+            //Add Match details to database
+            //TODO
+
+            //Reset match stats of the player
+            team1.playersList.get(i).matchBallsPlayed=0;
+            team1.playersList.get(i).matchRunsScored=0;
+            team1.playersList.get(i).matchFours=0;
+            team1.playersList.get(i).matchSixes=0;
+            team1.playersList.get(i).matchBallsBowled=0;
+            team1.playersList.get(i).matchWicketsTaken=0;
+            team1.playersList.get(i).matchRunsGiven=0;
+        }
+    }
 
     private String playSecondInnings(int target,int i, Team battingTeam, Team bowlingTeam){
         Random r= new Random();
