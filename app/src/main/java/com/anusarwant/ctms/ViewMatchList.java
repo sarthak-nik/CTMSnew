@@ -66,6 +66,16 @@ public class ViewMatchList extends AppCompatActivity {
             }
         });
 
+        Button teamDetails = findViewById(R.id.teamDetails);
+        teamDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ViewMatchList.this, TeamList.class);
+                i.putExtra("tourNum", position);
+                startActivity(i);
+            }
+        });
+
 
         Button play = findViewById(R.id.playTour);
         play.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +84,6 @@ public class ViewMatchList extends AppCompatActivity {
 
                 if(courseModalArrayList.get(position).iscomplete){
                     Toast.makeText(ViewMatchList.this,"This Tournament has already been played.", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(ViewMatchList.this,Integer.toString(courseModalArrayList.get(position).matchesArray.get(0).team1.wins)+Integer.toString(courseModalArrayList.get(position).matchesArray.get(0).team2.wins),Toast.LENGTH_SHORT).show();
                     return;
                 }
 

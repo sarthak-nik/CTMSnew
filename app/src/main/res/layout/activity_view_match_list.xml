@@ -20,12 +20,12 @@
             android:text="Points Table" />
 
         <Button
-            android:id="@+id/playerDetails"
+            android:id="@+id/teamDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:padding="15dp"
-            android:text="Player Details" />
+            android:text="Team Details" />
 
         <Button
             android:id="@+id/playTour"

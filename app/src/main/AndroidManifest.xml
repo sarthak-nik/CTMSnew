@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CTMS">
         <activity
+            android:name=".TeamList"
+            android:exported="false" />
+        <activity
             android:name=".PointsTable"
             android:exported="false" />
         <activity
