@@ -27,6 +27,7 @@ public class ViewMatchList extends AppCompatActivity {
     private ArrayList<Tournament> courseModalArrayList;
     int position;
 
+    public  DBHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,8 @@ public class ViewMatchList extends AppCompatActivity {
         // recycler view.
         buildRecyclerView();
 
+        //creating database object
+        db=new DBHandler(this);
         Button play = findViewById(R.id.playTour);
 
         play.setOnClickListener(new View.OnClickListener() {
@@ -58,29 +61,29 @@ public class ViewMatchList extends AppCompatActivity {
             public void onClick(View view) {
                 Random rd = new Random();
                 int target;
-                String winner;
+
                 for(int i =0;i<courseModalArrayList.size();i++){
                     // Play a match
                     if (rd.nextBoolean()){
                         courseModalArrayList.get(position).matchesArray.get(i).battedFirst=courseModalArrayList.get(position).matchesArray.get(i).team1.name;
                         target=playFirstInnings(i,courseModalArrayList.get(position).matchesArray.get(i).team1,courseModalArrayList.get(position).matchesArray.get(i).team2);
-                        winner = playSecondInnings(target,i,courseModalArrayList.get(position).matchesArray.get(i).team2,courseModalArrayList.get(position).matchesArray.get(i).team1);
-                        addToDatabase(courseModalArrayList.get(position).matchesArray.get(i).team1);
-                        addToDatabase(courseModalArrayList.get(position).matchesArray.get(i).team2);
+                        playSecondInnings(target,i,courseModalArrayList.get(position).matchesArray.get(i).team2,courseModalArrayList.get(position).matchesArray.get(i).team1);
+                        addToDatabase(i,courseModalArrayList.get(position).matchesArray.get(i).team1);
+                        addToDatabase(i,courseModalArrayList.get(position).matchesArray.get(i).team2);
                     }
                     else{
                         courseModalArrayList.get(position).matchesArray.get(i).battedFirst=courseModalArrayList.get(position).matchesArray.get(i).team2.name;
                         target=playFirstInnings(i,courseModalArrayList.get(position).matchesArray.get(i).team2,courseModalArrayList.get(position).matchesArray.get(i).team1);
-                        winner = playSecondInnings(target,i,courseModalArrayList.get(position).matchesArray.get(i).team1,courseModalArrayList.get(position).matchesArray.get(i).team2);
-                        addToDatabase(courseModalArrayList.get(position).matchesArray.get(i).team1);
-                        addToDatabase(courseModalArrayList.get(position).matchesArray.get(i).team2);
+                        playSecondInnings(target,i,courseModalArrayList.get(position).matchesArray.get(i).team1,courseModalArrayList.get(position).matchesArray.get(i).team2);
+                        addToDatabase(i,courseModalArrayList.get(position).matchesArray.get(i).team1);
+                        addToDatabase(i,courseModalArrayList.get(position).matchesArray.get(i).team2);
                     }
                 }
             }
         });
-      }
+    }
 
-    private void addToDatabase(Team team1) {
+    private void addToDatabase(int k,Team team1) {
         for (int i =0; i<11;i++){
             // Update tournament stats of the player
             team1.playersList.get(i).tourBallsPlayed+=team1.playersList.get(i).matchBallsPlayed;
@@ -92,8 +95,23 @@ public class ViewMatchList extends AppCompatActivity {
             team1.playersList.get(i).tourRunsGiven+=team1.playersList.get(i).matchRunsGiven;
 
             //Add Match details to database
-            //TODO
-
+            double strkRate=team1.playersList.get(i).matchRunsScored*100.0/team1.playersList.get(i).matchBallsPlayed;
+            double ecn=team1.playersList.get(i).matchRunsGiven/(team1.playersList.get(i).matchBallsBowled/6.0);
+            strkRate=Math.floor(strkRate * 100) / 100.0;
+            ecn=Math.floor(ecn*100)/100.0;
+            db.addNewRow(courseModalArrayList.get(position).name,
+                    k+1,
+                    team1.playersList.get(i).name,
+                    team1.playersList.get(i).matchRunsScored,
+                    team1.playersList.get(i).matchBallsPlayed,
+                    team1.playersList.get(i).matchFours,
+                    team1.playersList.get(i).matchSixes,
+                    strkRate,
+                    team1.playersList.get(i).matchBallsBowled,
+                    team1.playersList.get(i).matchWicketsTaken,
+                    team1.playersList.get(i).matchRunsGiven,
+                    ecn
+            );
             //Reset match stats of the player
             team1.playersList.get(i).matchBallsPlayed=0;
             team1.playersList.get(i).matchRunsScored=0;
@@ -105,7 +123,7 @@ public class ViewMatchList extends AppCompatActivity {
         }
     }
 
-    private String playSecondInnings(int target,int i, Team battingTeam, Team bowlingTeam){
+    private void playSecondInnings(int target,int i, Team battingTeam, Team bowlingTeam){
         Random r= new Random();
         float ballOutcome;
         int innningWickets=0;
@@ -194,12 +212,12 @@ public class ViewMatchList extends AppCompatActivity {
                 if(totalRuns>=target){
                     battingTeam.wins++;
                     bowlingTeam.losses++;
-                    return battingTeam.name;
+                    courseModalArrayList.get(position).matchesArray.get(i).winner=battingTeam.name;
                 }
                 if (innningWickets==10){
                     battingTeam.losses++;
                     bowlingTeam.wins++;
-                    return bowlingTeam.name;
+                    courseModalArrayList.get(position).matchesArray.get(i).winner=bowlingTeam.name;
                 }
             }
             // After every over
@@ -212,7 +230,7 @@ public class ViewMatchList extends AppCompatActivity {
         }
         battingTeam.losses++;
         bowlingTeam.wins++;
-        return bowlingTeam.name;
+        courseModalArrayList.get(position).matchesArray.get(i).winner=bowlingTeam.name;
     }
 
     private int playFirstInnings(int i, Team battingTeam, Team bowlingTeam){

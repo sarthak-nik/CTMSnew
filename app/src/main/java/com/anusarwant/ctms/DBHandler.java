@@ -5,13 +5,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 public class DBHandler extends SQLiteOpenHelper {
 
     //creating constant variables for databases
-    private static final String DB_NAME = "ctmsdb";
+    private static final String DB_NAME = "ctms.db";
     private static final int DB_VERSION = 1;
     //creating variable for table name
     private static final String TABLE_NAME = "stats";
@@ -56,25 +57,23 @@ public class DBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_NAME + " ("
                 + TOURNAMENT_COL + " TEXT, "
-                + MATCH_COL + "TEXT,"
+                + MATCH_COL + " TEXT,"
                 + PLAYER_COL + " TEXT,"
-                + RUNS_COL + "INTEGER,"
-                + BALLS_COL + "INTEGER,"
-                + FOUR_COL + "INTEGER,"
-                + SIX_COL + "INTEGER,"
-                + STRIKE_COL + "REAL,"
-                + BATAVG_COL + "REAL,"
-                + WICKETS_COL + "INTEGER,"
-                + BALLSBOWLED_COL + "INTEGER,"
-                + RUNSGIVEN_COL + "INTEGER,"
-                + ECONOMY_COL + "REAL,"
-                + BOWLAVG_COL + "REAL)";
+                + RUNS_COL + " INTEGER,"
+                + BALLS_COL + " INTEGER,"
+                + FOUR_COL + " INTEGER,"
+                + SIX_COL + " INTEGER,"
+                + STRIKE_COL + " DOUB,"
+                + WICKETS_COL + " INTEGER,"
+                + BALLSBOWLED_COL + " INTEGER,"
+                + RUNSGIVEN_COL + " INTEGER,"
+                + ECONOMY_COL + " DOUB)";
 
 
         db.execSQL(query);
     }
     public void addNewRow(String tournament,int match,String player,int runs,int ballsPlayed,int fours,int sixes,
-                          float strikeRate,float batAvg,int ballsBowled,int wickets,int runsGiven,float economy,float bowlAvg)
+                          double strikeRate,int ballsBowled,int wickets,int runsGiven,double economy)
     {
 
         //getting writeable database
@@ -92,21 +91,19 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(FOUR_COL,fours);
         values.put(SIX_COL,sixes);
         values.put(STRIKE_COL,strikeRate);
-        values.put(BATAVG_COL,batAvg);
         values.put(WICKETS_COL,wickets);
         values.put(BALLSBOWLED_COL,ballsBowled);
         values.put(RUNSGIVEN_COL,runsGiven);
         values.put(ECONOMY_COL,economy);
-        values.put(BOWLAVG_COL,bowlAvg);
 
         //adding content values to the table
         db.insert(TABLE_NAME, null, values);
+        Log.d("test",tournament);
         // at last we are closing our database
         db.close();
     }
 
-    public Cursor getDetails(String tournament,int matchNum,String player,int runs,int ballsPlayed,int fours,int sixes,double strikeRate,
-                             double batAvg,int wickets,int ballsBowled,int runsGiven,double economy,double bowlAvg){
+    public Cursor getDetails(String tournament,int matchNum){
         //getting our readable database
         SQLiteDatabase db = this.getReadableDatabase();
 
