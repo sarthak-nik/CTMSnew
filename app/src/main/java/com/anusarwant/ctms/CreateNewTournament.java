@@ -165,7 +165,12 @@ public class CreateNewTournament extends AppCompatActivity implements Navigation
 
                 // Store arrayList in shared Preferences
                 saveData();
+
+                Intent i = new Intent(CreateNewTournament.this, ViewMatchList.class);
+                i.putExtra("tourObjPosition",tournamentArrayList.size()-1);
+                startActivity(i);
             }
+
         });
     }
 

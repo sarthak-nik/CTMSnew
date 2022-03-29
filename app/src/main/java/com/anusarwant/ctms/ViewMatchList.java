@@ -85,14 +85,14 @@ public class ViewMatchList extends AppCompatActivity {
                     if (rd.nextBoolean()){
                         courseModalArrayList.get(position).matchesArray.get(i).battedFirst=courseModalArrayList.get(position).matchesArray.get(i).team1.name;
                         target=playFirstInnings(i,courseModalArrayList.get(position).matchesArray.get(i).team1,courseModalArrayList.get(position).matchesArray.get(i).team2,1);
-                        playSecondInnings(target,i,courseModalArrayList.get(position).matchesArray.get(i).team2,courseModalArrayList.get(position).matchesArray.get(i).team1,2);
+                        playSecondInnings(target,i,courseModalArrayList.get(position).matchesArray.get(i).team2,courseModalArrayList.get(position).matchesArray.get(i).team1,1);
                         addToDatabase(i,courseModalArrayList.get(position).matchesArray.get(i).team1);
                         addToDatabase(i,courseModalArrayList.get(position).matchesArray.get(i).team2);
                     }
                     else{
                         courseModalArrayList.get(position).matchesArray.get(i).battedFirst=courseModalArrayList.get(position).matchesArray.get(i).team2.name;
                         target=playFirstInnings(i,courseModalArrayList.get(position).matchesArray.get(i).team2,courseModalArrayList.get(position).matchesArray.get(i).team1,2);
-                        playSecondInnings(target,i,courseModalArrayList.get(position).matchesArray.get(i).team1,courseModalArrayList.get(position).matchesArray.get(i).team2,1);
+                        playSecondInnings(target,i,courseModalArrayList.get(position).matchesArray.get(i).team1,courseModalArrayList.get(position).matchesArray.get(i).team2,2);
                         addToDatabase(i,courseModalArrayList.get(position).matchesArray.get(i).team1);
                         addToDatabase(i,courseModalArrayList.get(position).matchesArray.get(i).team2);
                     }
@@ -102,8 +102,8 @@ public class ViewMatchList extends AppCompatActivity {
                 courseModalArrayList.get(position).iscomplete=true;
                 saveData();
 
-                Toast.makeText(ViewMatchList.this,Integer.toString(courseModalArrayList.get(position).matchesArray.get(0).team1.wins)+Integer.toString(courseModalArrayList.get(position).matchesArray.get(0).team2.wins),Toast.LENGTH_SHORT).show();
-                Toast.makeText(ViewMatchList.this,Integer.toString(numMatches),Toast.LENGTH_SHORT).show();
+                finish();
+                startActivity(getIntent());
             }
         });
     }
