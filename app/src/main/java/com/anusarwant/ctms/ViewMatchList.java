@@ -299,6 +299,7 @@ public class ViewMatchList extends AppCompatActivity {
             bowlingTeam.points++;
             battingTeam.matchHistory.add(0);
             bowlingTeam.matchHistory.add(0);
+            courseModalArrayList.get(position).matchesArray.get(i).winner="Match Drawn";
             return;
         }
 
