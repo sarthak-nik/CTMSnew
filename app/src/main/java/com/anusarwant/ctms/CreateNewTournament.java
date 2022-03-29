@@ -154,6 +154,7 @@ public class CreateNewTournament extends AppCompatActivity implements Navigation
                         Team team2 = newTour.teamsArray.get(j);
                         Match newMatch = new Match(team1,team2);
                         newMatch.matchNum=matchNumbers.get(counter++)+1;
+                        newMatch.tournamentName=newTour.name;
                         newTour.matchesArray.add(newMatch);
                     }
                 }

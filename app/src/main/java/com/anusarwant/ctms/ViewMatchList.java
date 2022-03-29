@@ -36,33 +36,51 @@ public class ViewMatchList extends AppCompatActivity {
 
         Intent intent = getIntent();
         position = intent.getIntExtra("tourObjPosition",-1);
-        if (position==-1){
-            Toast.makeText(this,"Position not passed correctly", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
         courseRV = findViewById(R.id.idRVMatches);
 
         // calling method to load data
         // from shared prefs.
         loadData();
 
-        Toast.makeText(this,Integer.toString(position),Toast.LENGTH_SHORT).show();
         // calling method to build
         // recycler view.
         buildRecyclerView();
 
         //creating database object
         db=new DBHandler(this);
-        Button play = findViewById(R.id.playTour);
 
+        Button points = findViewById(R.id.pointsTable);
+        points.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(!courseModalArrayList.get(position).iscomplete){
+                    Toast.makeText(ViewMatchList.this,"The Tournament has not been played yet.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Intent i = new Intent(ViewMatchList.this,PointsTable.class);
+                i.putExtra("tourNum",position);
+                startActivity(i);
+            }
+        });
+
+
+        Button play = findViewById(R.id.playTour);
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if(courseModalArrayList.get(position).iscomplete){
+                    Toast.makeText(ViewMatchList.this,"This Tournament has already been played.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ViewMatchList.this,Integer.toString(courseModalArrayList.get(position).matchesArray.get(0).team1.wins)+Integer.toString(courseModalArrayList.get(position).matchesArray.get(0).team2.wins),Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 Random rd = new Random();
                 int target;
-
+                int numMatches=0;
                 for(int i =0;i<courseModalArrayList.get(position).matchesArray.size();i++){
+                    numMatches++;
                     // Play a match
                     if (rd.nextBoolean()){
                         courseModalArrayList.get(position).matchesArray.get(i).battedFirst=courseModalArrayList.get(position).matchesArray.get(i).team1.name;
@@ -70,6 +88,7 @@ public class ViewMatchList extends AppCompatActivity {
                         playSecondInnings(target,i,courseModalArrayList.get(position).matchesArray.get(i).team2,courseModalArrayList.get(position).matchesArray.get(i).team1);
                         addToDatabase(i,courseModalArrayList.get(position).matchesArray.get(i).team1);
                         addToDatabase(i,courseModalArrayList.get(position).matchesArray.get(i).team2);
+                        saveData();
                     }
                     else{
                         courseModalArrayList.get(position).matchesArray.get(i).battedFirst=courseModalArrayList.get(position).matchesArray.get(i).team2.name;
@@ -77,8 +96,16 @@ public class ViewMatchList extends AppCompatActivity {
                         playSecondInnings(target,i,courseModalArrayList.get(position).matchesArray.get(i).team1,courseModalArrayList.get(position).matchesArray.get(i).team2);
                         addToDatabase(i,courseModalArrayList.get(position).matchesArray.get(i).team1);
                         addToDatabase(i,courseModalArrayList.get(position).matchesArray.get(i).team2);
+                        saveData();
                     }
+                    courseModalArrayList.get(position).matchesArray.get(i).isDone=true;
                 }
+                courseModalArrayList.get(position).status="Completed";
+                courseModalArrayList.get(position).iscomplete=true;
+                saveData();
+
+                Toast.makeText(ViewMatchList.this,Integer.toString(courseModalArrayList.get(position).matchesArray.get(0).team1.wins)+Integer.toString(courseModalArrayList.get(position).matchesArray.get(0).team2.wins),Toast.LENGTH_SHORT).show();
+                Toast.makeText(ViewMatchList.this,Integer.toString(numMatches),Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -200,6 +227,7 @@ public class ViewMatchList extends AppCompatActivity {
                     battingTeam.playersList.get(onStrike).matchBallsPlayed++;
                     bowlingTeam.playersList.get(bowler).matchBallsBowled++;
                     bowlingTeam.playersList.get(bowler).matchWicketsTaken++;
+                    battingTeam.playersList.get(onStrike).tourOuts++;
                     innningWickets++;
                     onStrike=innningWickets+1;
                 }
@@ -213,11 +241,15 @@ public class ViewMatchList extends AppCompatActivity {
                     battingTeam.wins++;
                     bowlingTeam.losses++;
                     courseModalArrayList.get(position).matchesArray.get(i).winner=battingTeam.name;
+                    battingTeam.points+=2;
+                    return;
                 }
                 if (innningWickets==10){
                     battingTeam.losses++;
                     bowlingTeam.wins++;
                     courseModalArrayList.get(position).matchesArray.get(i).winner=bowlingTeam.name;
+                    bowlingTeam.points+=2;
+                    return;
                 }
             }
             // After every over
@@ -228,9 +260,20 @@ public class ViewMatchList extends AppCompatActivity {
                 bowler=10;
             }
         }
+
+        // If Match Drawn
+        if (totalRuns==(target-1)){
+            battingTeam.draws++;
+            bowlingTeam.draws++;
+            battingTeam.points++;
+            bowlingTeam.points++;
+            return;
+        }
+
         battingTeam.losses++;
         bowlingTeam.wins++;
         courseModalArrayList.get(position).matchesArray.get(i).winner=bowlingTeam.name;
+        bowlingTeam.points+=2;
     }
 
     private int playFirstInnings(int i, Team battingTeam, Team bowlingTeam){
@@ -311,6 +354,7 @@ public class ViewMatchList extends AppCompatActivity {
                     bowlingTeam.playersList.get(bowler).matchBallsBowled++;
                     bowlingTeam.playersList.get(bowler).matchWicketsTaken++;
                     innningWickets++;
+                    battingTeam.playersList.get(onStrike).tourOuts++;
                     onStrike=innningWickets+1;
                 }
                 else{
@@ -376,6 +420,31 @@ public class ViewMatchList extends AppCompatActivity {
             // creating a new array list.
             courseModalArrayList = new ArrayList<>();
         }
+    }
+
+    private void saveData() {
+        // method for saving the data in array list.
+        // creating a variable for storing data in
+        // shared preferences.
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+
+        // creating a variable for editor to
+        // store data in shared preferences.
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        // creating a new variable for gson.
+        Gson gson = new Gson();
+
+        // getting data from gson and storing it in a string.
+        String json = gson.toJson(courseModalArrayList);
+
+        // below line is to save data in shared
+        // prefs in the form of string.
+        editor.putString("tournaments", json);
+
+        // below line is to apply changes
+        // and save data in shared prefs.
+        editor.apply();
     }
 
 

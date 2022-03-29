@@ -1,5 +1,6 @@
 package com.anusarwant.ctms;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,11 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
             @Override
             public void onClick(View view) {
                 if (modal.isDone) {
-                    // Start New Activity
+                    Intent intent = new Intent(mContext,MatchDetails.class);
+                    intent.putExtra("matchNum", holder.getAdapterPosition());
+                    intent.putExtra("tourName", modal.tournamentName);
+                    Toast.makeText(mContext,"Starting activity",Toast.LENGTH_SHORT).show();
+                    mContext.startActivity(intent);
                 }
                 else {
                     Toast.makeText(mContext,"Match not played yet!", Toast.LENGTH_SHORT).show();

@@ -12,10 +12,26 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/pointsTable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="15dp"
+            android:text="Points Table" />
+
+        <Button
+            android:id="@+id/playerDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="15dp"
+            android:text="Player Details" />
+
+        <Button
             android:id="@+id/playTour"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:padding="15dp"
             android:text="Play Tournament" />
 

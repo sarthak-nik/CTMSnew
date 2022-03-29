@@ -7,7 +7,7 @@ public class Match {
     Team team1,team2;
     String winner, team1score, team2score, battedFirst;
     boolean isDone;
-    String pom,highestRunScorer,highestWicketTaker;
+    String pom,highestRunScorer,highestWicketTaker,tournamentName;
 
     Match(Team _team1,Team _team2)
     {

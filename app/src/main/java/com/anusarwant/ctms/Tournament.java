@@ -8,7 +8,8 @@ public class Tournament {
     int nOvers;
     ArrayList<Team> teamsArray;
     ArrayList<Match> matchesArray;
-    String status;
+    String status;  // Ongoing/Completed
+    boolean iscomplete;
 
     Tournament(int novers, int nteams, String tourName){
         nTeams = nteams;
@@ -17,6 +18,7 @@ public class Tournament {
         status = "Ongoing";
         teamsArray = new ArrayList<>();
         matchesArray = new ArrayList<>();
+        iscomplete = false;
     }
 
 }

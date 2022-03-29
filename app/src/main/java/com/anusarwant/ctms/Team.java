@@ -8,13 +8,21 @@ public class Team {
     ArrayList<Player> playersList;
     String captain;
     int wins,losses,draws;
+    int points;
     Vector<Integer> matchHistory;
 
     Team(String _name)
     {
         name=_name;
-        wins=losses=draws=0;
+        wins=losses=draws=points=0;
         playersList = new ArrayList<>();
         matchHistory = new Vector<>();
     }
+
+    public static Comparator<Team> teamComparator = new Comparator<Team>() {
+        @Override
+        public int compare(Team t1, Team t2) {
+            return t2.points- t1.points;
+        }
+    };
 }

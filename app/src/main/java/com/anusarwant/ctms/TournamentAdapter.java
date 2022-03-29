@@ -45,7 +45,6 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
             public void onClick(View view) {
                 Intent intent = new Intent(mContext,ViewMatchList.class);
                 intent.putExtra("tourObjPosition", holder.getAdapterPosition());
-                Toast.makeText(mContext,"Starting activity",Toast.LENGTH_SHORT).show();
                 mContext.startActivity(intent);
             }
         });
