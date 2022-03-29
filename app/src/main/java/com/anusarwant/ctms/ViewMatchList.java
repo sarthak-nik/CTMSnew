@@ -95,8 +95,8 @@ public class ViewMatchList extends AppCompatActivity {
                         courseModalArrayList.get(position).matchesArray.get(i).battedFirst=courseModalArrayList.get(position).matchesArray.get(i).team2.name;
                         target=playFirstInnings(i,courseModalArrayList.get(position).matchesArray.get(i).team2,courseModalArrayList.get(position).matchesArray.get(i).team1,2);
                         playSecondInnings(target,i,courseModalArrayList.get(position).matchesArray.get(i).team1,courseModalArrayList.get(position).matchesArray.get(i).team2,2);
-                        addToDatabase(i,courseModalArrayList.get(position).matchesArray.get(i).team1);
                         addToDatabase(i,courseModalArrayList.get(position).matchesArray.get(i).team2);
+                        addToDatabase(i,courseModalArrayList.get(position).matchesArray.get(i).team1);
                     }
                     courseModalArrayList.get(position).matchesArray.get(i).isDone=true;
 
