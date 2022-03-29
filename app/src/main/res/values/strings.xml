@@ -13,6 +13,12 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="innings_1">Innings 1</string>
     <string name="innings_2">Innings 2</string>
+    <string name="rank">Rank</string>
+    <string name="team">Team</string>
+    <string name="wins">Wins</string>
+    <string name="losses">Losses</string>
+    <string name="draws">Draws</string>
+    <string name="points">Points</string>
 
     <string-array name="num_teams">
         <item>3</item>

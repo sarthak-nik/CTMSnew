@@ -18,11 +18,13 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class PointsTable extends AppCompatActivity {
     int position;
     private ArrayList<Tournament> tournamentArrayList;
-
+    private ArrayList<Team> teamsList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,11 +34,33 @@ public class PointsTable extends AppCompatActivity {
         position = intent.getIntExtra("tourNum",-1);
 
         loadData();
+        teamsList=new ArrayList<Team>();
+        for(int i=0;i<tournamentArrayList.get(position).teamsArray.size();i++){
+            teamsList.add(tournamentArrayList.get(position).teamsArray.get(i));
+            teamsList.get(i).wins=0;
+            teamsList.get(i).losses=0;
+            teamsList.get(i).draws=0;
+            teamsList.get(i).points=0;
+        }
 
+        for(int i=0;i<tournamentArrayList.get(position).matchesArray.size();i++){
+            String winner=tournamentArrayList.get(position).matchesArray.get(i).winner;
+            if(winner.equals("Match Drawn")){
+                teamsList.get(tournamentArrayList.get(position).matchesArray.get(i).team1.name.charAt(5)-'A').draws++;
+                teamsList.get(tournamentArrayList.get(position).matchesArray.get(i).team2.name.charAt(5)-'A').draws++;
+                continue;
+            }
+            teamsList.get(winner.charAt(5)-'A').wins++;
+        }
+        for(int i=0;i<teamsList.size();i++){
+            teamsList.get(i).losses=teamsList.size()-1-teamsList.get(i).wins-teamsList.get(i).draws;
+            teamsList.get(i).points=2*teamsList.get(i).wins+teamsList.get(i).draws;
+        }
+        Collections.sort(teamsList,Team.teamComparator);
         TableLayout tableLayout=findViewById(R.id.pointsTable);
         TableRow tr1;
         TextView t1,t2,t3,t4,t5,t6;
-        for (int i =0;i<tournamentArrayList.get(position).teamsArray.size();i++){
+        for (int i =0;i<teamsList.size();i++){
             tr1 = new TableRow(this);
             t1 = new TextView(this);
             t2 = new TextView(this);
@@ -45,11 +69,11 @@ public class PointsTable extends AppCompatActivity {
             t5 = new TextView(this);
             t6 = new TextView(this);
             t1.setText(Integer.toString(i+1));
-            t2.setText(tournamentArrayList.get(position).teamsArray.get(i).name);
-            t3.setText(Integer.toString(tournamentArrayList.get(position).teamsArray.get(i).wins));
-            t4.setText(Integer.toString(tournamentArrayList.get(position).teamsArray.get(i).losses));
-            t5.setText(Integer.toString(tournamentArrayList.get(position).teamsArray.get(i).draws));
-            t6.setText(Integer.toString(tournamentArrayList.get(position).teamsArray.get(i).points));
+            t2.setText(teamsList.get(i).name);
+            t3.setText(Integer.toString(teamsList.get(i).wins));
+            t4.setText(Integer.toString(teamsList.get(i).losses));
+            t5.setText(Integer.toString(teamsList.get(i).draws));
+            t6.setText(Integer.toString(teamsList.get(i).points));
             tr1.addView(t1);
             tr1.addView(t2);
             tr1.addView(t3);
