@@ -62,7 +62,7 @@ public class ViewMatchList extends AppCompatActivity {
                 Random rd = new Random();
                 int target;
 
-                for(int i =0;i<courseModalArrayList.size();i++){
+                for(int i =0;i<courseModalArrayList.get(position).matchesArray.size();i++){
                     // Play a match
                     if (rd.nextBoolean()){
                         courseModalArrayList.get(position).matchesArray.get(i).battedFirst=courseModalArrayList.get(position).matchesArray.get(i).team1.name;
