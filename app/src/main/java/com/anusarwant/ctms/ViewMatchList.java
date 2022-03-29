@@ -58,25 +58,26 @@ public class ViewMatchList extends AppCompatActivity {
             public void onClick(View view) {
                 Random rd = new Random();
                 int target;
+                String winner;
                 for(int i =0;i<courseModalArrayList.size();i++){
+                    // Play a match
                     if (rd.nextBoolean()){
                         courseModalArrayList.get(position).matchesArray.get(i).battedFirst=courseModalArrayList.get(position).matchesArray.get(i).team1.name;
                         target=playFirstInnings(i,courseModalArrayList.get(position).matchesArray.get(i).team1,courseModalArrayList.get(position).matchesArray.get(i).team2);
-                        playSecondInnings(target,i,courseModalArrayList.get(position).matchesArray.get(i).team2,courseModalArrayList.get(position).matchesArray.get(i).team1);
+                        winner = playSecondInnings(target,i,courseModalArrayList.get(position).matchesArray.get(i).team2,courseModalArrayList.get(position).matchesArray.get(i).team1);
                     }
                     else{
                         courseModalArrayList.get(position).matchesArray.get(i).battedFirst=courseModalArrayList.get(position).matchesArray.get(i).team2.name;
                         target=playFirstInnings(i,courseModalArrayList.get(position).matchesArray.get(i).team2,courseModalArrayList.get(position).matchesArray.get(i).team1);
-                        playSecondInnings(target,i,courseModalArrayList.get(position).matchesArray.get(i).team1,courseModalArrayList.get(position).matchesArray.get(i).team2);
+                        winner = playSecondInnings(target,i,courseModalArrayList.get(position).matchesArray.get(i).team1,courseModalArrayList.get(position).matchesArray.get(i).team2);
                     }
+                    // Add match details to database
                 }
             }
         });
       }
 
     private String playSecondInnings(int target,int i, Team battingTeam, Team bowlingTeam){
-
-        //TODO
         Random r= new Random();
         float ballOutcome;
         int innningWickets=0;
