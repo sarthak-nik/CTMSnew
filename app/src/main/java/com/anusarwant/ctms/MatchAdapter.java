@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> {
 
@@ -43,6 +44,8 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
         holder.team1score.setText(modal.team1score);
         holder.team2score.setText(modal.team2score);
         holder.result.setText("Winner: "+modal.winner);
+        holder.batFirst.setText("1st Batting: "+modal.battedFirst);
+        holder.toss.setText("Toss: "+ modal.toss);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +73,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         // creating variables for our views.
-        private TextView team1NameTV, matchNumTV, team2NameTV, team1score, team2score, result;
+        private TextView team1NameTV, matchNumTV, team2NameTV, team1score, team2score, result, batFirst, toss;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -82,6 +85,8 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
             team1score = itemView.findViewById(R.id.team1Score);
             team2score = itemView.findViewById(R.id.team2Score);
             result = itemView.findViewById(R.id.result);
+            batFirst = itemView.findViewById(R.id.batFirst);
+            toss = itemView.findViewById(R.id.toss);
 
         }
     }

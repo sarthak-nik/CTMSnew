@@ -17,11 +17,21 @@
 
         <TextView
             android:id="@+id/idTVMatchNumber"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:text="Match Number"
+            android:layout_alignParentStart="true"
             android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/batFirst"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"
+            android:padding="5dp"
+            android:text="Batted First" />
 
         <TextView
             android:id="@+id/idTVTeam1Name"
@@ -75,11 +85,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/idTVTeam2Name"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_alignParentStart="true"
+            android:layout_margin="5dp"
             android:paddingLeft="5dp"
             android:text="Result"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/toss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idTVTeam2Name"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:paddingRight="20dp"
+            android:text="Toss"
             android:textSize="14sp" />
 
 

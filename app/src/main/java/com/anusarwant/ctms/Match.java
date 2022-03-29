@@ -5,7 +5,7 @@ import java.util.Comparator;
 public class Match {
     int matchNum;
     Team team1,team2;
-    String winner, team1score, team2score, battedFirst;
+    String winner, team1score, team2score, battedFirst, toss;
     boolean isDone;
     String pom,highestRunScorer,highestWicketTaker,tournamentName;
 
@@ -16,6 +16,9 @@ public class Match {
         team1score="Yet to Bat";
         team2score="Yet to Bat";
         isDone = false;
+        winner="TBD";
+        battedFirst="TBD";
+        toss="TBD";
     }
 
     public static Comparator<Match> matchComparator = new Comparator<Match>() {

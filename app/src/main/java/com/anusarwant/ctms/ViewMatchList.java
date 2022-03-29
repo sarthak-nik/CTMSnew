@@ -80,9 +80,15 @@ public class ViewMatchList extends AppCompatActivity {
 
                 Random rd = new Random();
                 int target;
-                int numMatches=0;
                 for(int i =0;i<courseModalArrayList.get(position).matchesArray.size();i++){
-                    numMatches++;
+                    // Toss
+                    Random r = new Random();
+                    if (r.nextBoolean()){
+                        courseModalArrayList.get(position).matchesArray.get(i).toss=courseModalArrayList.get(position).matchesArray.get(i).team1.name;
+                    }
+                    else {
+                        courseModalArrayList.get(position).matchesArray.get(i).toss = courseModalArrayList.get(position).matchesArray.get(i).team2.name;
+                    }
                     // Play a match
                     if (rd.nextBoolean()){
                         courseModalArrayList.get(position).matchesArray.get(i).battedFirst=courseModalArrayList.get(position).matchesArray.get(i).team1.name;
