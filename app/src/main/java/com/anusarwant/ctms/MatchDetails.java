@@ -26,10 +26,11 @@ public class MatchDetails extends AppCompatActivity {
 
         DBHandler db=new DBHandler(this);
         Button in1 = findViewById(R.id.innings1);
+        // button to display the scorecard details for innings 1
         in1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                // cursor to read the database
                 Cursor cursor=db.getDetails(tourName,matchNum+1);
                 if(cursor.getCount()==0){
 
@@ -38,6 +39,7 @@ public class MatchDetails extends AppCompatActivity {
                 else{
                     int score=0,total=0,wickets=0;
                     int cnt=0;
+                    // buffer to store the data to be displayed
                     StringBuffer buffer1 = new StringBuffer();
                     buffer1.append("TEAM-"+cursor.getString(2).charAt(6)+"\n\n");
                     do {
@@ -88,6 +90,7 @@ public class MatchDetails extends AppCompatActivity {
                     buffer.append("Extras: "+(total-score)+"\n\n\n");
                     buffer.append(buffer2);
 
+                    // creating a alert dialog for displaying the scorecard details of innings 1
                     AlertDialog.Builder builder = new AlertDialog.Builder(MatchDetails.this);
                     builder.setCancelable(true);
                     builder.setTitle("Innings 1 Summary");
@@ -99,11 +102,13 @@ public class MatchDetails extends AppCompatActivity {
 
         });
         Button in2 = findViewById(R.id.innings2);
+        // button to display the scorecard details for innings 2
         in2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //cursor to read the required data from the database
                 Cursor cursor=db.getDetails(tourName,matchNum+1);
+                //display a message if data not found
                 if(cursor.getCount()==0){
 
                     Toast.makeText(MatchDetails.this,"No details found",Toast.LENGTH_SHORT).show();
@@ -115,6 +120,7 @@ public class MatchDetails extends AppCompatActivity {
                         cursor.moveToNext();
                         cnt++;
                     }
+                    //creating a buffer to store the data to be displayed
                     StringBuffer buffer1 = new StringBuffer();
                     buffer1.append("TEAM-"+cursor.getString(2).charAt(6)+"\n\n");
                     do {
@@ -165,6 +171,7 @@ public class MatchDetails extends AppCompatActivity {
                     buffer.append("Extras: "+(total-score)+"\n\n\n");
                     buffer.append(buffer2);
 
+                    //creating a alertdialog in order to display the scorecard details for innings 2
                     AlertDialog.Builder builder = new AlertDialog.Builder(MatchDetails.this);
                     builder.setCancelable(true);
                     builder.setTitle("Innings 2 Summary");

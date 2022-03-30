@@ -46,7 +46,8 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
         holder.result.setText("Winner: "+modal.winner);
         holder.batFirst.setText("1st Batting: "+modal.battedFirst);
         holder.toss.setText("Toss: "+ modal.toss);
-
+        // when clicked on a particular match
+        // redirects to the match details
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,12 +58,14 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
                     mContext.startActivity(intent);
                 }
                 else {
+                    // if tournament has not been played yet
+                    // displays a message
                     Toast.makeText(mContext,"Match not played yet!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
-
+    //function to get the total number of matches in the tournament
     @Override
     public int getItemCount() {
         // returning the size of array list.

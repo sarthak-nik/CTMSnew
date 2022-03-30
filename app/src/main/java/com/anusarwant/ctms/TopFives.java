@@ -55,6 +55,7 @@ public class TopFives extends AppCompatActivity implements NavigationView.OnNavi
 
         ArrayList<Player> playerList=new ArrayList<Player>();
         DBHandler db=new DBHandler(this);
+        // reading from database
         Cursor cursor=db.getDetails(tournamentArrayList.get(position).name,-1);
         if(cursor.getCount()==0)
         {
@@ -62,6 +63,7 @@ public class TopFives extends AppCompatActivity implements NavigationView.OnNavi
         }
         else{
             do{
+                //storing required stats for every player
                 Player player=new Player(cursor.getString(2),-1,true,-1);
                 player.tourRunsScored=cursor.getInt(3);
                 player.tourWickets=cursor.getInt(8);
@@ -74,6 +76,7 @@ public class TopFives extends AppCompatActivity implements NavigationView.OnNavi
         }
 
         Button hRuns=findViewById(R.id.hRunScorer);
+        //Button to display top 5 runs scorer
         hRuns.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,6 +101,7 @@ public class TopFives extends AppCompatActivity implements NavigationView.OnNavi
         });
 
         Button hWicks=findViewById(R.id.hWickTaker);
+        // Button to display top 5 wickets
         hWicks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,6 +125,7 @@ public class TopFives extends AppCompatActivity implements NavigationView.OnNavi
         });
 
         Button hStrk=findViewById(R.id.hStrikeRate);
+        //Button to display top 5 players with highest strike rate
         hStrk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -144,6 +149,7 @@ public class TopFives extends AppCompatActivity implements NavigationView.OnNavi
         });
 
         Button hEcn=findViewById(R.id.hEconomy);
+        // Button to display top 5 players with best economy
         hEcn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -169,6 +175,7 @@ public class TopFives extends AppCompatActivity implements NavigationView.OnNavi
         });
 
         Button hFour=findViewById(R.id.hFours);
+        // button to display top 5 players with most number of fours
         hFour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -192,6 +199,7 @@ public class TopFives extends AppCompatActivity implements NavigationView.OnNavi
         });
 
         Button hSix=findViewById(R.id.hSixes);
+        // button to display top 5 players with most number of sixes
         hSix.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

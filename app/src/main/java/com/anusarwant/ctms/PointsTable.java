@@ -52,12 +52,14 @@ public class PointsTable extends AppCompatActivity implements NavigationView.OnN
 
         Intent intent = getIntent();
         position = intent.getIntExtra("tourNum",-1);
-
+        //loading the data from shared preferances
         loadData();
 
         TextView heading = findViewById(R.id.tableHeader);
         heading.setText(tournamentArrayList.get(position).name);
 
+        // initialising a new team array list
+        // with wins,losses,draws and points equal to 0
         teamsList=new ArrayList<Team>();
         for(int i=0;i<tournamentArrayList.get(position).teamsArray.size();i++){
             teamsList.add(tournamentArrayList.get(position).teamsArray.get(i));
@@ -66,7 +68,7 @@ public class PointsTable extends AppCompatActivity implements NavigationView.OnN
             teamsList.get(i).draws=0;
             teamsList.get(i).points=0;
         }
-
+        //updating the number of wins,losses and draws for every team
         for(int i=0;i<tournamentArrayList.get(position).matchesArray.size();i++){
             String winner=tournamentArrayList.get(position).matchesArray.get(i).winner;
             if(winner.equals("Match Drawn")){
@@ -76,11 +78,15 @@ public class PointsTable extends AppCompatActivity implements NavigationView.OnN
             }
             teamsList.get(winner.charAt(5)-'A').wins++;
         }
+        //updating the number of points for every team
         for(int i=0;i<teamsList.size();i++){
             teamsList.get(i).losses=teamsList.size()-1-teamsList.get(i).wins-teamsList.get(i).draws;
             teamsList.get(i).points=2*teamsList.get(i).wins+teamsList.get(i).draws;
         }
+        //sorting teams in descending order of their points
         Collections.sort(teamsList,Team.teamComparator);
+
+        // creating a table layout for displaying the points table
         TableLayout tableLayout=findViewById(R.id.pointsTable);
         TableRow tr1;
         TextView t1,t2,t3,t4,t5,t6;
@@ -98,6 +104,7 @@ public class PointsTable extends AppCompatActivity implements NavigationView.OnN
             t4.setText(Integer.toString(teamsList.get(i).losses));
             t5.setText(Integer.toString(teamsList.get(i).draws));
             t6.setText(Integer.toString(teamsList.get(i).points));
+            // center aligning the displayed text
             t1.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             t2.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             t3.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
@@ -117,7 +124,7 @@ public class PointsTable extends AppCompatActivity implements NavigationView.OnN
         }
 
     }
-
+    //loading data from shared preferences
     private void loadData() {
         // method to load arraylist from shared prefs
         // initializing our shared prefs with name as
