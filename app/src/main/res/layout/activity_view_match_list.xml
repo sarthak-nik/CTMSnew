@@ -27,6 +27,15 @@
                 android:text="Points Table" />
 
             <Button
+                android:id="@+id/deletetour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:padding="15dp"
+                android:text="Delete Tornament" />
+
+            <Button
                 android:id="@+id/teamDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -46,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:layout_weight="1"
+                android:layout_weight="0"
                 android:padding="15dp"
                 android:text="Play Tournament" />
 
@@ -57,7 +66,7 @@
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:padding="15dp"
-                android:text="Tournament Top Five's" />
+                android:text="Tournament Top 5's" />
         </LinearLayout>
 
         <LinearLayout

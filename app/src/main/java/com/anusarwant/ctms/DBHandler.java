@@ -137,21 +137,9 @@ public class DBHandler extends SQLiteOpenHelper {
 
         return  cursor;
     }
-    public Cursor getTeamDetails(String tournament,int k){
-        //getting our readable database
-        SQLiteDatabase db = this.getReadableDatabase();
-        char tempchar='A';
-        tempchar+=k;
-        String player="Player"+tempchar;
-        //creating a cursor
-        Cursor cursor=db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+TOURNAMENT_COL+"=? AND "+PLAYER_COL+"=?",new String[]{tournament,player});
 
-        cursor.moveToFirst();
 
-        return  cursor;
-    }
-
-    public void deleteCourse(String tourname) {
+    public void deleteTournament(String tourname) {
 
         // creating writable database
         SQLiteDatabase db = this.getWritableDatabase();
