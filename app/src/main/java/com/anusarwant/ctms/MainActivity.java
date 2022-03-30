@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         Button createNewTournament = findViewById(R.id.create_new_tournament);
-        Button viewStats = findViewById(R.id.view_statistics);
         Button viewPrevTournament = findViewById(R.id.view_previous_tournament_details);
 
         createNewTournament.setOnClickListener(new View.OnClickListener() {
@@ -49,13 +48,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        viewStats.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this,ViewStatistics.class);
-                startActivity(i);
-            }
-        });
 
         viewPrevTournament.setOnClickListener(new View.OnClickListener() {
             @Override

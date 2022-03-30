@@ -30,15 +30,7 @@
             android:name=".ViewMatchList"
             android:exported="false" />
         <activity
-            android:name=".AppSettings"
-            android:exported="true"
-            android:parentActivityName=".MainActivity" />
-        <activity
             android:name=".ViewPreviousTournamentDetails"
-            android:exported="true"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".ViewStatistics"
             android:exported="true"
             android:parentActivityName=".MainActivity" />
         <activity
