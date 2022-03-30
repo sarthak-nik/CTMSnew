@@ -7,33 +7,42 @@
     tools:context=".MatchDetails">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:backgroundTint="@android:color/darker_gray"
-        android:orientation="vertical">
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="20dp"
+            android:text="Match Summary"
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/innings1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="20dp"
-            android:layout_weight="1"
-            android:backgroundTint="@color/purple_500"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="20dp"
             android:text="View Innings 1 Scorecard"
-            android:textSize="24sp"
-            app:cornerRadius="150dp"
+            android:textSize="14sp"
             tools:ignore="TextContrastCheck" />
 
         <Button
             android:id="@+id/innings2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="20dp"
-            android:layout_weight="1"
-            android:backgroundTint="@color/purple_500"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="20dp"
             android:text="View Innings 2 Scorecard"
-            android:textSize="24sp"
-            app:cornerRadius="150dp"
+            android:textSize="14sp"
             tools:ignore="TextContrastCheck" />
     </LinearLayout>
 
