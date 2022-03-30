@@ -154,7 +154,7 @@ public class TopFives extends AppCompatActivity implements NavigationView.OnNavi
                 while(playerList.get(cnt).tourEconomy<0.1)cnt++;
                 for(int i=cnt;i<cnt+5 && i<playerList.size();i++)
                 {
-                    buffer.append(Integer.toString(i+1)+". ");
+                    buffer.append(Integer.toString(i-cnt+1)+". ");
                     buffer.append("Player Name: "+playerList.get(i).name+"\n");
                     buffer.append("    Economy: "+playerList.get(i).tourEconomy+"\n");
                     buffer.append("    Team Name: TEAM-"+playerList.get(i).name.charAt(6)+"\n\n\n");
