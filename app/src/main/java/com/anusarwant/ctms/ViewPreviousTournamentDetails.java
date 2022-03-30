@@ -37,6 +37,14 @@ public class ViewPreviousTournamentDetails extends AppCompatActivity implements 
     private ArrayList<Tournament> tournamentArrayList;
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(ViewPreviousTournamentDetails.this, MainActivity.class);
+        finish();
+        startActivity(i);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_previous_tournament_details);
