@@ -189,11 +189,11 @@ public class ViewMatchList extends AppCompatActivity implements NavigationView.O
                                     courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourBallsPlayed,
                                     courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourFours,
                                     courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourSixes,
-                                    (courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourRunsScored*100.0)/courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourBallsPlayed,
+                                    Math.floor((courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourRunsScored*100.0)/courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourBallsPlayed*100)/100.0,
                                     courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourBallsBowled,
                                     courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourWickets,
                                     courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourRunsGiven,
-                                    (courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourRunsGiven*6.0)/courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourBallsBowled
+                                    Math.floor((courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourRunsGiven*6.0)/courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourBallsBowled*100)/100.0
                             );
                         }
                     }

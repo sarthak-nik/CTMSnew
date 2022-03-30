@@ -65,8 +65,8 @@ public class TopFives extends AppCompatActivity implements NavigationView.OnNavi
                 Player player=new Player(cursor.getString(2),-1,true,-1);
                 player.tourRunsScored=cursor.getInt(3);
                 player.tourWickets=cursor.getInt(8);
-                player.tourStrikeRate=cursor.getDouble(7);
-                player.tourEconomy=cursor.getDouble(11);
+                player.tourStrikeRate=Math.floor(cursor.getDouble(7)*100)/100.0;
+                player.tourEconomy=Math.floor(cursor.getDouble(11)*100)/100.0;
                 player.tourFours=cursor.getInt(5);
                 player.tourSixes= cursor.getInt(6);
                 playerList.add(player);
@@ -80,6 +80,7 @@ public class TopFives extends AppCompatActivity implements NavigationView.OnNavi
                 Collections.sort(playerList,Player.playersRunsComparator);
                 StringBuffer buffer=new StringBuffer();
                 buffer.append("\n");
+
                 for(int i=0;i<5 && i<playerList.size();i++)
                 {
                     buffer.append(Integer.toString(i+1)+". ");
@@ -149,7 +150,9 @@ public class TopFives extends AppCompatActivity implements NavigationView.OnNavi
                 Collections.sort(playerList,Player.playerEconomyComparator);
                 StringBuffer buffer=new StringBuffer();
                 buffer.append("\n");
-                for(int i=0;i<5 && i<playerList.size();i++)
+                int cnt=0;
+                while(playerList.get(cnt).tourEconomy<0.1)cnt++;
+                for(int i=cnt;i<cnt+5 && i<playerList.size();i++)
                 {
                     buffer.append(Integer.toString(i+1)+". ");
                     buffer.append("Player Name: "+playerList.get(i).name+"\n");

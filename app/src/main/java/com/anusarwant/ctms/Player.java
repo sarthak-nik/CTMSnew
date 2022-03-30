@@ -58,7 +58,7 @@ public class Player {
     public static Comparator<Player> playerEconomyComparator = new Comparator<Player>() {
         @Override
         public int compare(Player p1, Player p2) {
-            double temp = (p2.tourEconomy-p1.tourEconomy);
+            double temp = (p1.tourEconomy-p2.tourEconomy);
             if (temp<0){
                 return -1;
             }

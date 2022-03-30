@@ -20,7 +20,7 @@
             android:layout_weight="1"
             android:backgroundTint="@color/purple_500"
             android:text="View Innings 1 Scorecard"
-            android:textSize="34sp"
+            android:textSize="24sp"
             app:cornerRadius="150dp"
             tools:ignore="TextContrastCheck" />
 
@@ -32,7 +32,7 @@
             android:layout_weight="1"
             android:backgroundTint="@color/purple_500"
             android:text="View Innings 2 Scorecard"
-            android:textSize="34sp"
+            android:textSize="24sp"
             app:cornerRadius="150dp"
             tools:ignore="TextContrastCheck" />
     </LinearLayout>
