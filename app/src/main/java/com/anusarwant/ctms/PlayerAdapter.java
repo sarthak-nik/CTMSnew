@@ -36,6 +36,24 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
         // setting data to our views of recycler view.
         Player modal = playerArrayList.get(position);
         holder.playerNameTV.setText(modal.name);
+
+        String tmp="Batsman";
+        if(modal.role==0)tmp="All-Rounder";
+        if(modal.role==1)tmp="Spin Bowler";
+        if(modal.role==2)tmp="Fast Bowler";
+        if(modal.isRight)tmp="Right-Handed "+tmp;
+        else tmp="Left-Handed "+tmp;
+        holder.roleTV.setText("Role: "+tmp);
+        holder.ageTV.setText("Age: "+modal.age);
+        holder.runScoredTV.setText("Runs Scored: "+modal.tourRunsScored);
+        holder.strikeRateTV.setText("Strike Rate: "+modal.tourStrikeRate);
+        holder.foursTV.setText("Fours: "+modal.tourFours);
+        holder.sixesTV.setText("Sixes: "+modal.tourSixes);
+        int balls=modal.tourBallsBowled/6;
+        holder.oversBowledTV.setText("Overs Bowled: "+Integer.toString(balls)+"."+Integer.toString(modal.tourBallsBowled%6));
+        holder.wicketsTakenTV.setText("Wickets Taken: "+modal.tourWickets);
+        holder.economyTV.setText("Economy: "+modal.tourEconomy);
+
     }
 
     @Override
@@ -47,13 +65,24 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         // creating variables for our views.
-        private TextView playerNameTV;
+        private TextView playerNameTV,roleTV,ageTV,runScoredTV,strikeRateTV,foursTV,sixesTV,oversBowledTV,wicketsTakenTV,economyTV;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             // initializing our views with their ids.
             playerNameTV = itemView.findViewById(R.id.idTVPlayerName);
+            roleTV=itemView.findViewById(R.id.role);
+            ageTV=itemView.findViewById(R.id.idTVPlayerAge);
+            runScoredTV=itemView.findViewById(R.id.runsScored);
+            strikeRateTV=itemView.findViewById(R.id.strikeRate);
+            foursTV=itemView.findViewById(R.id.fours);
+            sixesTV=itemView.findViewById(R.id.sixes);
+            oversBowledTV=itemView.findViewById(R.id.oversBowled);
+            wicketsTakenTV=itemView.findViewById(R.id.wicketsTaken);
+            economyTV=itemView.findViewById(R.id.economy);
+
         }
     }
 }

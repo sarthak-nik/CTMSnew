@@ -17,8 +17,8 @@
             android:id="@+id/idTVPlayerName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             android:layout_centerHorizontal="true"
+            android:padding="10dp"
             android:text="Player Name"
             android:textColor="@color/black"
             android:textSize="18sp" />
@@ -33,12 +33,13 @@
             android:paddingEnd="15dp"
             android:textColor="@color/black"
             android:textSize="18sp" />
+
         <TextView
             android:id="@+id/role"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
             android:layout_below="@id/idTVPlayerName"
+            android:layout_alignParentStart="true"
             android:paddingStart="15dp"
             android:text="Role"
             android:textColor="@color/black"
@@ -47,8 +48,8 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@android:color/darker_gray"
-            android:layout_below="@id/idTVPlayerAge"/>
+            android:layout_below="@id/idTVPlayerAge"
+            android:background="@android:color/darker_gray" />
 
         <TextView
             android:id="@+id/textView7"

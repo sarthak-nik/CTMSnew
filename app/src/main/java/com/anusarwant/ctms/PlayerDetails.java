@@ -57,7 +57,7 @@ public class PlayerDetails extends AppCompatActivity {
                 tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(j).tourBallsPlayed=cursor.getInt(4);
                 tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(j).tourFours=cursor.getInt(5);
                 tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(j).tourSixes=cursor.getInt(6);
-                tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(j).tourStrikeRate=cursor.getDouble(7);
+                tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(j).tourStrikeRate=Math.floor(cursor.getDouble(7)*100)/100.0;
                 tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(j).tourWickets=cursor.getInt(8);
                 if(cursor.getInt(8)>wicks){
                     wicks=cursor.getInt(8);
@@ -65,7 +65,7 @@ public class PlayerDetails extends AppCompatActivity {
                 }
                 tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(j).tourBallsBowled=cursor.getInt(9);
                 tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(j).tourRunsGiven=cursor.getInt(10);
-                tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(j).tourEconomy=cursor.getDouble(11);
+                tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(j).tourEconomy=Math.floor(cursor.getDouble(11)*100)/100.0;
         }
         String history="";
         int nWins=0;
