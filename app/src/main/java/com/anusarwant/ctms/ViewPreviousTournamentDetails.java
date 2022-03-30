@@ -132,18 +132,7 @@ public class ViewPreviousTournamentDetails extends AppCompatActivity implements 
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             }
-            case R.id.stats_nav: {
-                Intent i = new Intent(ViewPreviousTournamentDetails.this, ViewStatistics.class);
-                startActivity(i);
-                drawerLayout.closeDrawer(GravityCompat.START);
-                break;
-            }
-            case R.id.settings_nav: {
-                Intent i = new Intent(ViewPreviousTournamentDetails.this, AppSettings.class);
-                startActivity(i);
-                drawerLayout.closeDrawer(GravityCompat.START);
-                break;
-            }
+            
         }
 
         return true;

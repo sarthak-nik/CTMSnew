@@ -272,18 +272,7 @@ public class CreateNewTournament extends AppCompatActivity implements Navigation
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             }
-            case R.id.stats_nav: {
-                Intent i = new Intent(CreateNewTournament.this, ViewStatistics.class);
-                startActivity(i);
-                drawerLayout.closeDrawer(GravityCompat.START);
-                break;
-            }
-            case R.id.settings_nav: {
-                Intent i = new Intent(CreateNewTournament.this, AppSettings.class);
-                startActivity(i);
-                drawerLayout.closeDrawer(GravityCompat.START);
-                break;
-            }
+
         }
 
         return true;

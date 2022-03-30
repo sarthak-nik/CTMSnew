@@ -16,14 +16,6 @@
             android:id="@+id/prev_tour_details_nav"
             android:icon="?android:attr/actionModeFindDrawable"
             android:title="Previous Tournament Details" />
-        <item
-            android:id="@+id/stats_nav"
-            android:icon="@android:drawable/ic_menu_sort_by_size"
-            android:title="Statistics" />
-        <item
-            android:id="@+id/settings_nav"
-            android:icon="@android:drawable/ic_menu_manage"
-            android:title="Settings" />
     </group>
 
     <item android:title="Project By :-">

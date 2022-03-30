@@ -67,16 +67,7 @@ public class AppSettings extends AppCompatActivity implements NavigationView.OnN
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             }
-            case R.id.stats_nav: {
-                Intent i = new Intent(AppSettings.this, ViewStatistics.class);
-                startActivity(i);
-                drawerLayout.closeDrawer(GravityCompat.START);
-                break;
-            }
-            case R.id.settings_nav: {
-                drawerLayout.closeDrawer(GravityCompat.START);
-                break;
-            }
+
         }
 
         return true;

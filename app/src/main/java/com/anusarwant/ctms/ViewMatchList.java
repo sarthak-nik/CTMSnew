@@ -1,7 +1,11 @@
 package com.anusarwant.ctms;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,10 +14,12 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -21,7 +27,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ViewMatchList extends AppCompatActivity {
+public class ViewMatchList extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private RecyclerView courseRV;
 
@@ -32,6 +38,9 @@ public class ViewMatchList extends AppCompatActivity {
 
     public  DBHandler db;
 
+    public DrawerLayout drawerLayout;
+    public ActionBarDrawerToggle actionBarDrawerToggle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +50,22 @@ public class ViewMatchList extends AppCompatActivity {
         Intent intent = getIntent();
         position = intent.getIntExtra("tourObjPosition",-1);
         courseRV = findViewById(R.id.idRVMatches);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_match_list);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        // drawer layout instance to toggle the menu icon to open
+        // drawer and back button to close drawer
+        drawerLayout = findViewById(R.id.drawer_layout_view_match_list);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
+
+        // pass the Open and Close toggle for the drawer layout listener
+        // to toggle the button
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+        // to make the Navigation drawer icon always appear on the action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // calling method to load data
         // from shared prefs.
@@ -146,13 +171,6 @@ public class ViewMatchList extends AppCompatActivity {
                             Toast.makeText(ViewMatchList.this,"No details found",Toast.LENGTH_SHORT).show();
                         }
                         else{
-//                            courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourRunsScored=0;
-//                            courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourBallsPlayed=0;
-//                            courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourFours=0;
-//                            courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourSixes=0;
-//                            courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourWickets=0;
-//                            courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourBallsBowled=0;
-//                            courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourRunsGiven=0;
 
                             do{
                                 courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourRunsScored+=cursor.getInt(3);
@@ -574,6 +592,44 @@ public class ViewMatchList extends AppCompatActivity {
         // below line is to apply changes
         // and save data in shared prefs.
         editor.apply();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        // Handle navigation view item clicks
+        switch (item.getItemId()) {
+            case R.id.home_nav: {
+                Intent i = new Intent(ViewMatchList.this, MainActivity.class);
+                startActivity(i);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            }
+            case  R.id.new_tournament_nav: {
+                Intent i = new Intent(ViewMatchList.this, CreateNewTournament.class);
+                startActivity(i);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            }
+            case  R.id.prev_tour_details_nav: {
+                Intent i = new Intent(ViewMatchList.this,ViewPreviousTournamentDetails.class);
+                startActivity(i);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            }
+
+        }
+
+        return true;
     }
 
 

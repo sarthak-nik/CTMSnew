@@ -18,22 +18,19 @@
         <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMS/app/src/main/res/layout/switch_item.xml" value="0.25" />
         <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMS/app/src/main/res/layout/tournament_rv_item.xml" value="0.264" />
         <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMS/app/src/main/res/menu/navigation_menu.xml" value="0.25" />
+        <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMSnew/app/src/main/res/layout/activity_create_new_tournament.xml" value="0.25" />
         <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMSnew/app/src/main/res/layout/activity_match_details.xml" value="0.25" />
-        <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMSnew/app/src/main/res/layout/activity_points_table.xml" value="0.4" />
+        <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMSnew/app/src/main/res/layout/activity_player_details.xml" value="0.2359375" />
+        <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMSnew/app/src/main/res/layout/activity_points_table.xml" value="0.2" />
         <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMSnew/app/src/main/res/layout/activity_team_list.xml" value="0.1" />
-        <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMSnew/app/src/main/res/layout/activity_view_match_list.xml" value="0.25" />
+        <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMSnew/app/src/main/res/layout/activity_top_fives.xml" value="0.25" />
+        <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMSnew/app/src/main/res/layout/activity_view_match_list.xml" value="0.1" />
         <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMSnew/app/src/main/res/layout/activity_view_previous_tournament_details.xml" value="0.25" />
         <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMSnew/app/src/main/res/layout/activity_view_statistics.xml" value="0.25" />
         <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMSnew/app/src/main/res/layout/match_rv_item.xml" value="0.25" />
         <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMSnew/app/src/main/res/layout/player_rv_item.xml" value="0.25" />
-        <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMSnew/app/src/main/res/layout/team_rv_item.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_match_details.xml" value="0.13994565217391305" />
-        <entry key="app/src/main/res/layout/activity_player_details.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_team_list.xml" value="0.13994565217391305" />
-        <entry key="app/src/main/res/layout/activity_view_statistics.xml" value="0.13994565217391305" />
-        <entry key="app/src/main/res/layout/match_rv_item.xml" value="0.21" />
-        <entry key="app/src/main/res/layout/player_rv_item.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/team_rv_item.xml" value="0.13994565217391305" />
+        <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMSnew/app/src/main/res/layout/team_rv_item.xml" value="0.18532818532818532" />
+        <entry key="..\:/Users/ANUJ/AndroidStudioProjects/CTMSnew/app/src/main/res/menu/navigation_menu.xml" value="0.25" />
       </map>
     </option>
   </component>
