@@ -150,6 +150,17 @@ public class DBHandler extends SQLiteOpenHelper {
 
         return  cursor;
     }
+
+    public void deleteCourse(String tourname) {
+
+        // creating writable database
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //deleting tournament
+        db.delete(TABLE_NAME, TOURNAMENT_COL+"=?", new String[]{tourname});
+        db.close();
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
