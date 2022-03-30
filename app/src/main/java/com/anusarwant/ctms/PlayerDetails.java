@@ -1,6 +1,10 @@
 package com.anusarwant.ctms;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,17 +12,22 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class PlayerDetails extends AppCompatActivity {
+public class PlayerDetails extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private RecyclerView playerRV;
+
+    public DrawerLayout drawerLayout;
+    public ActionBarDrawerToggle actionBarDrawerToggle;
 
     // variable for our adapter class and array list
     private PlayerAdapter adapter;
@@ -32,6 +41,16 @@ public class PlayerDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player_details);
         getSupportActionBar().setTitle("Player Details");
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_player_details);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        drawerLayout = findViewById(R.id.drawer_layout_player_details);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.nav_open,R.string.nav_close);
+
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
         position = intent.getIntExtra("tourNum",-1);
@@ -143,5 +162,43 @@ public class PlayerDetails extends AppCompatActivity {
             // creating a new array list.
             tournamentArrayList = new ArrayList<>();
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        // Handle navigation view item clicks
+        switch (item.getItemId()) {
+            case R.id.home_nav: {
+                Intent i = new Intent(PlayerDetails.this, MainActivity.class);
+                startActivity(i);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            }
+            case  R.id.new_tournament_nav: {
+                Intent i = new Intent(PlayerDetails.this,CreateNewTournament.class);
+                startActivity(i);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            }
+            case  R.id.prev_tour_details_nav: {
+                Intent i = new Intent(PlayerDetails.this,ViewPreviousTournamentDetails.class);
+                startActivity(i);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            }
+
+        }
+
+        return true;
     }
 }
