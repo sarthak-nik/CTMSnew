@@ -56,7 +56,7 @@
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:padding="15dp"
-                android:text="Tournament Top 5's" />
+                android:text="Tournament Top Five's" />
         </LinearLayout>
 
         <LinearLayout

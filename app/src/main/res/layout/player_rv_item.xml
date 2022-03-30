@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!--text view for our team name-->
         <TextView
             android:id="@+id/idTVPlayerName"
             android:layout_width="wrap_content"
@@ -58,7 +57,8 @@
             android:layout_below="@id/idTVPlayerAge"
             android:padding="8dp"
             android:paddingStart="15dp"
-            android:text="Batting Stats" />
+            android:text="Batting Stats"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/runsScored"
@@ -114,7 +114,8 @@
             android:layout_alignParentStart="true"
             android:padding="8dp"
             android:paddingStart="15dp"
-            android:text="Bowling Stats" />
+            android:text="Bowling Stats"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/oversBowled"
@@ -145,6 +146,13 @@
             android:padding="8dp"
             android:paddingStart="15dp"
             android:text="Economy" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@android:color/black"
+            android:layout_below="@id/economy"/>
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

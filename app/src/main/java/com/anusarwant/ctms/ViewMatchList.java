@@ -36,6 +36,7 @@ public class ViewMatchList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_match_list);
+        getSupportActionBar().setTitle("Match List");
 
         Intent intent = getIntent();
         position = intent.getIntExtra("tourObjPosition",-1);
@@ -56,6 +57,10 @@ public class ViewMatchList extends AppCompatActivity {
         topFive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!courseModalArrayList.get(position).iscomplete){
+                    Toast.makeText(ViewMatchList.this,"The Tournament has not been played yet.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent i = new Intent(ViewMatchList.this,TopFives.class);
                 i.putExtra("tourNum",position);
                 startActivity(i);
@@ -81,6 +86,10 @@ public class ViewMatchList extends AppCompatActivity {
         teamDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!courseModalArrayList.get(position).iscomplete){
+                    Toast.makeText(ViewMatchList.this,"The Tournament has not been played yet.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent i = new Intent(ViewMatchList.this, TeamList.class);
                 i.putExtra("tourNum", position);
                 startActivity(i);

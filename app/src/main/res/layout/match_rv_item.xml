@@ -12,8 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!--text view for our course name-->
-
 
         <TextView
             android:id="@+id/idTVMatchNumber"
@@ -104,6 +102,12 @@
             android:paddingRight="20dp"
             android:text="Toss"
             android:textSize="14sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/toss"
+            android:background="@android:color/darker_gray"/>
 
 
 

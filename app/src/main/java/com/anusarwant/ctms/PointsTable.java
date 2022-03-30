@@ -29,6 +29,7 @@ public class PointsTable extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_points_table);
+        getSupportActionBar().setTitle("Points Table");
 
         Intent intent = getIntent();
         position = intent.getIntExtra("tourNum",-1);

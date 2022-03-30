@@ -27,6 +27,7 @@ public class TeamList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team_list);
+        getSupportActionBar().setTitle("Teams");
 
         Intent intent = getIntent();
         position = intent.getIntExtra("tourNum",-1);

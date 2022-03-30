@@ -12,6 +12,7 @@ public class TopFives extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_fives);
+        getSupportActionBar().setTitle("Tournament Top Five's");
 
         Intent intent = getIntent();
         position = intent.getIntExtra("tourNum",-1);

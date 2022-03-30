@@ -31,6 +31,7 @@ public class PlayerDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player_details);
+        getSupportActionBar().setTitle("Player Details");
 
         Intent intent = getIntent();
         position = intent.getIntExtra("tourNum",-1);

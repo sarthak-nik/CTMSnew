@@ -18,6 +18,7 @@ public class MatchDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_match_details);
+        getSupportActionBar().setTitle("Match Details");
 
         Intent intent = getIntent();
         matchNum = intent.getIntExtra("matchNum",-1);

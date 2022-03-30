@@ -29,4 +29,55 @@ public class Player {
             return p1.role-p2.role;
         }
     };
+
+    public static Comparator<Player> playersRunsComparator = new Comparator<Player>() {
+        @Override
+        public int compare(Player p1, Player p2) {
+            return p2.tourRunsScored-p1.tourRunsScored;
+        }
+    };
+
+    public static Comparator<Player> playerWicketsComparator = new Comparator<Player>() {
+        @Override
+        public int compare(Player p1, Player p2) {
+            return p2.tourWickets-p1.tourWickets;
+        }
+    };
+
+    public static Comparator<Player> playerStrikeRateComparator = new Comparator<Player>() {
+        @Override
+        public int compare(Player p1, Player p2) {
+            double temp = (p2.tourStrikeRate-p1.tourStrikeRate);
+            if (temp<0){
+                return -1;
+            }
+            return  1;
+        }
+    };
+
+    public static Comparator<Player> playerEconomyComparator = new Comparator<Player>() {
+        @Override
+        public int compare(Player p1, Player p2) {
+            double temp = (p2.tourEconomy-p1.tourEconomy);
+            if (temp<0){
+                return -1;
+            }
+            return  1;
+        }
+    };
+
+    public static Comparator<Player> playerFoursComparator = new Comparator<Player>() {
+        @Override
+        public int compare(Player p1, Player p2) {
+            return p2.tourFours-p1.tourFours;
+        }
+    };
+
+    public static Comparator<Player> playerSixesComparator = new Comparator<Player>() {
+        @Override
+        public int compare(Player p1, Player p2) {
+            return p2.tourSixes-p1.tourSixes;
+        }
+    };
+
 }
