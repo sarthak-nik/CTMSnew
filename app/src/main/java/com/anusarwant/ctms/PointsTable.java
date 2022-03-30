@@ -34,6 +34,10 @@ public class PointsTable extends AppCompatActivity {
         position = intent.getIntExtra("tourNum",-1);
 
         loadData();
+
+        TextView heading = findViewById(R.id.tableHeader);
+        heading.setText(tournamentArrayList.get(position).name);
+
         teamsList=new ArrayList<Team>();
         for(int i=0;i<tournamentArrayList.get(position).teamsArray.size();i++){
             teamsList.add(tournamentArrayList.get(position).teamsArray.get(i));
@@ -80,6 +84,8 @@ public class PointsTable extends AppCompatActivity {
             t4.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             t5.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             t6.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+
+            tr1.setPadding(0,8,0,8);
 
             tr1.addView(t1);
             tr1.addView(t2);
