@@ -51,6 +51,16 @@ public class ViewMatchList extends AppCompatActivity {
         //creating database object
         db=new DBHandler(this);
 
+        Button topFive = findViewById(R.id.topFive);
+        topFive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ViewMatchList.this,TopFives.class);
+                i.putExtra("tourNum",position);
+                startActivity(i);
+            }
+        });
+
         Button points = findViewById(R.id.pointsTable);
         points.setOnClickListener(new View.OnClickListener() {
             @Override

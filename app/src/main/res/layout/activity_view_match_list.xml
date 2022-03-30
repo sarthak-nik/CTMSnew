@@ -11,29 +11,53 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/pointsTable"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:padding="15dp"
-            android:text="Points Table" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/teamDetails"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:padding="15dp"
-            android:text="Team Details" />
+            <Button
+                android:id="@+id/pointsTable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:padding="15dp"
+                android:text="Points Table" />
 
-        <Button
-            android:id="@+id/playTour"
+            <Button
+                android:id="@+id/teamDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:padding="15dp"
+                android:text="Team Details" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:padding="15dp"
-            android:text="Play Tournament" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/playTour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:padding="15dp"
+                android:text="Play Tournament" />
+
+            <Button
+                android:id="@+id/topFive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:padding="15dp"
+                android:text="Tournament Top 5's" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CTMS">
         <activity
+            android:name=".TopFives"
+            android:exported="false" />
+        <activity
             android:name=".TeamList"
             android:exported="false" />
         <activity
