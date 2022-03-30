@@ -53,6 +53,7 @@ public class DBHandler extends SQLiteOpenHelper {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
+    // creating a table
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_NAME + " ("
@@ -72,6 +73,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         db.execSQL(query);
     }
+    //adding player details for a particular match in a table row
     public void addNewRow(String tournament,int match,String player,int runs,int ballsPlayed,int fours,int sixes,
                           double strikeRate,int ballsBowled,int wickets,int runsGiven,double economy)
     {
@@ -98,11 +100,12 @@ public class DBHandler extends SQLiteOpenHelper {
 
         //adding content values to the table
         db.insert(TABLE_NAME, null, values);
-        Log.d("test",tournament);
         // at last we are closing our database
         db.close();
     }
 
+    // function for getting details of all players in a match
+    // a cursor is returned using which the required data can be accessed
     public Cursor getDetails(String tournament,int matchNum){
         //getting our readable database
         SQLiteDatabase db = this.getReadableDatabase();
@@ -115,6 +118,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return  cursor;
 
     }
+    //  function for getting details of a particular player in all matches in given tournament
     public Cursor getPlayerDetails(String tournament,String player){
         //getting our readable database
         SQLiteDatabase db = this.getReadableDatabase();
@@ -126,6 +130,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         return  cursor;
     }
+    // function for getting details of a particular player in partiucular match
     public Cursor getPlayerTourDetails(String tournament,int matchnum,String player){
         //getting our readable database
         SQLiteDatabase db = this.getReadableDatabase();
@@ -138,7 +143,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return  cursor;
     }
 
-
+    // function for deleting the tournament with given name from the database
     public void deleteTournament(String tourname) {
 
         // creating writable database

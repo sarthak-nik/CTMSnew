@@ -59,44 +59,50 @@ public class CreateNewTournament extends AppCompatActivity implements Navigation
         Spinner num_teams = findViewById(R.id.spinnerNumTeams);
         Spinner num_overs = findViewById(R.id.spinnerNumOvers);
 
+        // button to store the number of teams in the tournament from user input
         num_teams.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 noTeams = Integer.parseInt(adapterView.getSelectedItem().toString());
             }
 
+            // if number of teams not selected by user, displays a message indicating it
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 Toast.makeText(CreateNewTournament.this,"Select Number of Teams",Toast.LENGTH_SHORT).show();
             }
         });
 
+        // button to store the number of overs to be bowled in every match of the tournament from user input
         num_overs.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 noOvers = Integer.parseInt(adapterView.getSelectedItem().toString());
             }
 
+            // if number of overs not selected by user, displays a message indicating it
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 Toast.makeText(CreateNewTournament.this,"Select Number of Overs", Toast.LENGTH_SHORT).show();
             }
         });
-
+        // loading data from shared preferences
         loadData();
 
-
+        // button to generate random schedule for the new tournament
         generate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 EditText tourNameEditText = (EditText) findViewById(R.id.tournamentName);
                 String tourName = tourNameEditText.getText().toString();
-
+                //checking whether the tournament name is entered by the user
                 if (tourName.equals("")){
                     Toast.makeText(CreateNewTournament.this, "Tournament name cannot be blank", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                //checking if first or last character is a whitespace
                 if (Character.isWhitespace(tourName.charAt(0)) || Character.isWhitespace(tourName.charAt(tourName.length()-1))){
+                    Toast.makeText(CreateNewTournament.this, "Tournament name cannot start or end with whitespace", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 // Check if tournament name is unique
