@@ -54,7 +54,6 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
                     Intent intent = new Intent(mContext,MatchDetails.class);
                     intent.putExtra("matchNum", holder.getAdapterPosition());
                     intent.putExtra("tourName", modal.tournamentName);
-                    Toast.makeText(mContext,"Starting activity",Toast.LENGTH_SHORT).show();
                     mContext.startActivity(intent);
                 }
                 else {

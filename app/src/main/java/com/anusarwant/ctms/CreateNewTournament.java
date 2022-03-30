@@ -114,6 +114,7 @@ public class CreateNewTournament extends AppCompatActivity implements Navigation
                     char x='A';
                     x+=i;
                     Team newTeam = new Team("Team-"+x);
+                    newTeam.tourPosition=tournamentArrayList.size();
 
                     //Create players (captain etc too)
                     int lucky= new Random().nextInt(11);

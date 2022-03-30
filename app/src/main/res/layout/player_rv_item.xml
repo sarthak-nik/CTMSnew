@@ -12,64 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!--text view for our course name-->
-
-
+        <!--text view for our team name-->
         <TextView
-            android:id="@+id/idTVMatchNumber"
+            android:id="@+id/idTVPlayerName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Match Number"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/idTVTeam1Name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/idTVMatchNumber"
-            android:layout_alignParentStart="true"
-            android:gravity="center"
-            android:padding="8dp"
-            android:text="Team1 Name"
+            android:padding="15dp"
+            android:text="Player Name"
             android:textColor="@color/black"
             android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/team1Score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@id/idTVMatchNumber"
-            android:padding="8dp"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:text="Team1 Score" />
-
-
-        <TextView
-            android:id="@+id/idTVTeam2Name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/idTVTeam1Name"
-            android:gravity="center"
-            android:layout_alignParentStart="true"
-            android:padding="8dp"
-            android:text="Team2 Name"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/team2Score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@id/idTVTeam1Name"
-            android:padding="8dp"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:text="Team2 Score" />
-
 
     </RelativeLayout>
 
