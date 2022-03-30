@@ -13,21 +13,27 @@
         android:theme="@style/Theme.CTMS">
         <activity
             android:name=".PlayerDetails"
+            android:parentActivityName=".TeamList"
             android:exported="false" />
         <activity
             android:name=".TopFives"
+            android:parentActivityName=".ViewMatchList"
             android:exported="false" />
         <activity
             android:name=".TeamList"
+            android:parentActivityName=".ViewMatchList"
             android:exported="false" />
         <activity
             android:name=".PointsTable"
+            android:parentActivityName=".ViewMatchList"
             android:exported="false" />
         <activity
             android:name=".MatchDetails"
+            android:parentActivityName=".ViewMatchList"
             android:exported="false" />
         <activity
             android:name=".ViewMatchList"
+            android:parentActivityName=".ViewPreviousTournamentDetails"
             android:exported="false" />
         <activity
             android:name=".ViewPreviousTournamentDetails"
