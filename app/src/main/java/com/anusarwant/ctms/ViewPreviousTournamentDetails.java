@@ -40,7 +40,7 @@ public class ViewPreviousTournamentDetails extends AppCompatActivity implements 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_previous_tournament_details);
-        getSupportActionBar().setTitle("Previous Tournament Details");
+        getSupportActionBar().setTitle("Tournament Details");
 
         tournamentRV = findViewById(R.id.idRVCourses);
 
