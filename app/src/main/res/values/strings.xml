@@ -43,6 +43,11 @@
 
     <string-array name="num_overs">
         <item>20</item>
+        <item>25</item>
+        <item>30</item>
+        <item>35</item>
+        <item>40</item>
+        <item>45</item>
         <item>50</item>
     </string-array>
 </resources>
