@@ -43,6 +43,14 @@ public class ViewMatchList extends AppCompatActivity implements NavigationView.O
     public ActionBarDrawerToggle actionBarDrawerToggle;
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(ViewMatchList.this,ViewPreviousTournamentDetails.class);
+        finish();
+        startActivity(i);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_match_list);

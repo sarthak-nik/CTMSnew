@@ -21,6 +21,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public ActionBarDrawerToggle actionBarDrawerToggle;
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        MainActivity.this.finish();
+        System.exit(0);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //displaying splash screen when the application is opened
