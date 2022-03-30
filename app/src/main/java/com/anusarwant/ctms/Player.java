@@ -11,6 +11,7 @@ public class Player {
     int matchBallsBowled, matchRunsScored, matchWicketsTaken, matchBallsPlayed, matchFours, matchSixes, matchRunsGiven;
     double tourStrikeRate,tourEconomy;
 
+    // Constructor
     Player(String _name,int _age,boolean _isRight,int _role)
     {
         name=_name;
@@ -23,6 +24,7 @@ public class Player {
         tourEconomy=0.0;
     }
 
+    // Comparator function that sorts according to role
     public static Comparator<Player> playerComparator = new Comparator<Player>() {
         @Override
         public int compare(Player p1, Player p2) {
@@ -30,6 +32,7 @@ public class Player {
         }
     };
 
+    // Comparator function that sorts according to Runs Scored
     public static Comparator<Player> playersRunsComparator = new Comparator<Player>() {
         @Override
         public int compare(Player p1, Player p2) {
@@ -37,6 +40,7 @@ public class Player {
         }
     };
 
+    // Comparator function that sorts according to Wickets Taken
     public static Comparator<Player> playerWicketsComparator = new Comparator<Player>() {
         @Override
         public int compare(Player p1, Player p2) {
@@ -44,6 +48,7 @@ public class Player {
         }
     };
 
+    // Comparator function that sorts according to Strike Rate
     public static Comparator<Player> playerStrikeRateComparator = new Comparator<Player>() {
         @Override
         public int compare(Player p1, Player p2) {
@@ -55,6 +60,7 @@ public class Player {
         }
     };
 
+    // Comparator function that sorts according to Bowling Economy
     public static Comparator<Player> playerEconomyComparator = new Comparator<Player>() {
         @Override
         public int compare(Player p1, Player p2) {
@@ -66,6 +72,7 @@ public class Player {
         }
     };
 
+    // Comparator function that sorts according to number of fours hit
     public static Comparator<Player> playerFoursComparator = new Comparator<Player>() {
         @Override
         public int compare(Player p1, Player p2) {
@@ -73,6 +80,7 @@ public class Player {
         }
     };
 
+    // Comparator function that sorts according to number of sixes hit
     public static Comparator<Player> playerSixesComparator = new Comparator<Player>() {
         @Override
         public int compare(Player p1, Player p2) {

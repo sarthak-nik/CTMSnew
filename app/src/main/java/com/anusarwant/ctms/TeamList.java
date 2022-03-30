@@ -27,8 +27,6 @@ public class TeamList extends AppCompatActivity implements NavigationView.OnNavi
     public DrawerLayout drawerLayout;
     public ActionBarDrawerToggle actionBarDrawerToggle;
 
-
-
     // variable for our adapter class and array list
     private TeamAdapter adapter;
     private ArrayList<Tournament> tournamentArrayList;
@@ -40,6 +38,7 @@ public class TeamList extends AppCompatActivity implements NavigationView.OnNavi
         setContentView(R.layout.activity_team_list);
         getSupportActionBar().setTitle("Teams");
 
+        // Set navigation bar
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_team_list);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -64,6 +63,7 @@ public class TeamList extends AppCompatActivity implements NavigationView.OnNavi
         buildRecyclerView();
     }
 
+    // Build Recycler View
     private void buildRecyclerView() {
         // initializing our adapter class.
         adapter = new TeamAdapter(tournamentArrayList.get(position).teamsArray, TeamList.this);
@@ -79,6 +79,7 @@ public class TeamList extends AppCompatActivity implements NavigationView.OnNavi
         teamRV.setAdapter(adapter);
     }
 
+    // Load data from shared preferences
     private void loadData() {
         // method to load arraylist from shared prefs
         // initializing our shared prefs with name as

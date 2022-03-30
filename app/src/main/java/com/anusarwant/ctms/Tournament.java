@@ -8,9 +8,10 @@ public class Tournament {
     int nOvers;
     ArrayList<Team> teamsArray;
     ArrayList<Match> matchesArray;
-    String status;  // Ongoing/Completed
-    boolean iscomplete;
+    String status;          // Ongoing/Completed
+    boolean iscomplete;     // Stores if tournament is complete
 
+    // Constructor Function
     Tournament(int novers, int nteams, String tourName){
         nTeams = nteams;
         nOvers = novers;

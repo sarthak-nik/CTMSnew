@@ -37,6 +37,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
         Player modal = playerArrayList.get(position);
         holder.playerNameTV.setText(modal.name);
 
+        // Set text views appropriately
         String tmp="Batsman";
         if(modal.role==0)tmp="All-Rounder";
         if(modal.role==1)tmp="Spin Bowler";

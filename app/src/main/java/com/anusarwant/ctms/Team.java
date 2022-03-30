@@ -12,6 +12,7 @@ public class Team {
     int tourPosition;
     Vector<Integer> matchHistory;       // 1:won     0:draw     -1:lost
 
+    // Constructor
     Team(String _name)
     {
         name=_name;
@@ -23,6 +24,7 @@ public class Team {
         matchHistory = new Vector<>();
     }
 
+    // Comparator Function
     public static Comparator<Team> teamComparator = new Comparator<Team>() {
         @Override
         public int compare(Team t1, Team t2) {

@@ -36,6 +36,7 @@ public class ViewMatchList extends AppCompatActivity implements NavigationView.O
     private ArrayList<Tournament> courseModalArrayList;
     int position;
 
+    // database handler object
     public  DBHandler db;
 
     public DrawerLayout drawerLayout;
@@ -47,10 +48,12 @@ public class ViewMatchList extends AppCompatActivity implements NavigationView.O
         setContentView(R.layout.activity_view_match_list);
         getSupportActionBar().setTitle("Match List");
 
+        // Get data from previous intent
         Intent intent = getIntent();
         position = intent.getIntExtra("tourObjPosition",-1);
         courseRV = findViewById(R.id.idRVMatches);
 
+        // Set Navigation bar
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_match_list);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -78,6 +81,7 @@ public class ViewMatchList extends AppCompatActivity implements NavigationView.O
         //creating database object
         db=new DBHandler(this);
 
+        // Implement topFive Buttons onClickListener
         Button topFive = findViewById(R.id.topFive);
         topFive.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +96,7 @@ public class ViewMatchList extends AppCompatActivity implements NavigationView.O
             }
         });
 
+        //Implement points Buttons onClickListener
         Button points = findViewById(R.id.pointsTable);
         points.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -220,6 +225,7 @@ public class ViewMatchList extends AppCompatActivity implements NavigationView.O
         });
     }
 
+    // Add Data to sql database
     private void addToDatabase(int k,Team team1) {
         for (int i =0; i<11;i++){
             // Update tournament stats of the player
@@ -260,6 +266,7 @@ public class ViewMatchList extends AppCompatActivity implements NavigationView.O
         }
     }
 
+    // Play Second Innings ball by ball
     private void playSecondInnings(int target,int i, Team battingTeam, Team bowlingTeam, int bat){
         Random r= new Random();
         float ballOutcome;
@@ -420,6 +427,7 @@ public class ViewMatchList extends AppCompatActivity implements NavigationView.O
         bowlingTeam.points+=2;
     }
 
+    // Play First Innings ball by ball
     private int playFirstInnings(int i, Team battingTeam, Team bowlingTeam,int bat){
         Random r= new Random();
         float ballOutcome;
@@ -538,6 +546,7 @@ public class ViewMatchList extends AppCompatActivity implements NavigationView.O
         return totalRuns+1;
     }
 
+    // Build Recycler View
     private void buildRecyclerView() {
         // initialize adapter class
         adapter = new MatchAdapter(courseModalArrayList.get(position).matchesArray,ViewMatchList.this);
@@ -553,6 +562,7 @@ public class ViewMatchList extends AppCompatActivity implements NavigationView.O
         courseRV.setAdapter(adapter);
     }
 
+    // Function to load Data
     private void loadData() {
         // method to load arraylist from shared prefs
         // initializing our shared prefs with name as
@@ -581,6 +591,7 @@ public class ViewMatchList extends AppCompatActivity implements NavigationView.O
         }
     }
 
+    // Function to save Data
     private void saveData() {
         // method for saving the data in array list.
         // creating a variable for storing data in
@@ -615,7 +626,6 @@ public class ViewMatchList extends AppCompatActivity implements NavigationView.O
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks
@@ -638,11 +648,7 @@ public class ViewMatchList extends AppCompatActivity implements NavigationView.O
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             }
-
         }
-
         return true;
     }
-
-
 }

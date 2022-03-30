@@ -42,7 +42,10 @@ public class ViewPreviousTournamentDetails extends AppCompatActivity implements 
         setContentView(R.layout.activity_view_previous_tournament_details);
         getSupportActionBar().setTitle("Tournament Details");
 
+        // recycler view
         tournamentRV = findViewById(R.id.idRVCourses);
+
+        // Add navigation bar
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_viewPrevTourDetails);
         navigationView.setNavigationItemSelectedListener(this);
@@ -98,10 +101,10 @@ public class ViewPreviousTournamentDetails extends AppCompatActivity implements 
         }
         else{
             tempText.setVisibility(View.INVISIBLE);
-
         }
     }
 
+    // onOptionsItemSelected function
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -132,9 +135,7 @@ public class ViewPreviousTournamentDetails extends AppCompatActivity implements 
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             }
-            
         }
-
         return true;
     }
 

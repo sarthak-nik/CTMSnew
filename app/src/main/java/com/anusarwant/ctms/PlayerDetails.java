@@ -42,6 +42,7 @@ public class PlayerDetails extends AppCompatActivity implements NavigationView.O
         setContentView(R.layout.activity_player_details);
         getSupportActionBar().setTitle("Player Details");
 
+        // Set Navigation bar
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_player_details);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -62,12 +63,14 @@ public class PlayerDetails extends AppCompatActivity implements NavigationView.O
         // from shared prefs.
         loadData();
 
+        // Database Handler
         DBHandler db=new DBHandler(this);
 
         int hRun=0,hWick=10;
         int runs=0,wicks=0;
         for(int j=0;j<11;j++)
         {
+                // Get data from sql database
                 Cursor cursor=db.getPlayerTourDetails(tournamentArrayList.get(position).name,-1,tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(j).name);
                 tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(j).tourRunsScored=cursor.getInt(3);
                 if(cursor.getInt(3)>runs){
@@ -102,6 +105,8 @@ public class PlayerDetails extends AppCompatActivity implements NavigationView.O
         if(history.length()>10){
             history=history.substring(0,10);
         }
+
+        // Set appropriate text views
         TextView t1=findViewById(R.id.tStats1);
         t1.setText(tournamentArrayList.get(position).teamsArray.get(teamNum).name + " Stats");
         t1=findViewById(R.id.teamMatchesPlayed);
@@ -114,6 +119,7 @@ public class PlayerDetails extends AppCompatActivity implements NavigationView.O
         t1.setText("Highest Run Scorer: "+tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(hRun).name+" ("+runs+")");
         t1=findViewById(R.id.teamHighestWicketTaker);
         t1.setText("Highest Wicket Taker: "+tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(hWick).name+" ("+wicks+")");
+
         // calling method to build
         // recycler view.
         buildRecyclerView();
@@ -196,9 +202,7 @@ public class PlayerDetails extends AppCompatActivity implements NavigationView.O
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             }
-
         }
-
         return true;
     }
 }
