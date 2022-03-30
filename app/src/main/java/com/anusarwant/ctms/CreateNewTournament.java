@@ -157,11 +157,12 @@ public class CreateNewTournament extends AppCompatActivity implements Navigation
                     // Add team to tournament
                     newTour.teamsArray.add(newTeam);
                 }
-
+                //Vector to store match number
                 Vector<Integer> matchNumbers = new Vector<Integer>();
                 for (int i = 0; i< noTeams*(noTeams-1)/2; i++){
                     matchNumbers.add(i);
                 }
+                // shuffling the match numbers
                 Collections.shuffle(matchNumbers);
                 int counter=0;
 
@@ -177,6 +178,7 @@ public class CreateNewTournament extends AppCompatActivity implements Navigation
                         newTour.matchesArray.add(newMatch);
                     }
                 }
+                // sorting all the matches according to the match number
                 Collections.sort(newTour.matchesArray,Match.matchComparator);
 
                 // Add tournament to arrayList
@@ -185,6 +187,8 @@ public class CreateNewTournament extends AppCompatActivity implements Navigation
                 // Store arrayList in shared Preferences
                 saveData();
 
+                // after generating the match schedule
+                // user is redirected to a new activity containing match details and various options related to the tournament
                 Intent i = new Intent(CreateNewTournament.this, ViewMatchList.class);
                 i.putExtra("tourObjPosition",tournamentArrayList.size()-1);
                 startActivity(i);

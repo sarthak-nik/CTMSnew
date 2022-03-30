@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //displaying splash screen when the application is opened
         SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
         setContentView(R.layout.activity_main);
 
@@ -40,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Button createNewTournament = findViewById(R.id.create_new_tournament);
         Button viewPrevTournament = findViewById(R.id.view_previous_tournament_details);
 
+        //button to create a new tournament
+        // redirects the user to new activity where options regarding the tournament are available
         createNewTournament.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,7 +51,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-
+        // button to view details of completed and ongoing tournaments
+        // redirects to activity containing the list of all tournaments
         viewPrevTournament.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
     }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
