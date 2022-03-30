@@ -121,6 +121,18 @@ public class ViewMatchList extends AppCompatActivity implements NavigationView.O
             }
         });
 
+        Button deleteTour = findViewById(R.id.deletetour);
+        deleteTour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                db.deleteTournament(courseModalArrayList.get(position).name);
+                courseModalArrayList.remove(position);
+                saveData();
+                Intent i=new Intent(ViewMatchList.this,ViewPreviousTournamentDetails.class);
+                startActivity(i);
+            }
+        });
+
 
         Button play = findViewById(R.id.playTour);
         play.setOnClickListener(new View.OnClickListener() {
