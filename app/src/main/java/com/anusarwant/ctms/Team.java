@@ -15,7 +15,10 @@ public class Team {
     Team(String _name)
     {
         name=_name;
-        wins=losses=draws=points=0;
+        wins=0;
+        losses=0;
+        draws=0;
+        points=0;
         playersList = new ArrayList<>();
         matchHistory = new Vector<>();
     }

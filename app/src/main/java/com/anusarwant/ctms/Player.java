@@ -9,6 +9,7 @@ public class Player {
     int role; //-1: batsman   0: all rounder  1: spin bowler 2: fast bowler
     int tourBallsBowled,tourRunsScored,tourWickets,tourBallsPlayed, tourFours, tourSixes, tourOuts, tourRunsGiven;
     int matchBallsBowled, matchRunsScored, matchWicketsTaken, matchBallsPlayed, matchFours, matchSixes, matchRunsGiven;
+    double tourStrikeRate,tourEconomy;
 
     Player(String _name,int _age,boolean _isRight,int _role)
     {
@@ -18,6 +19,8 @@ public class Player {
         role=_role;
         matchBallsPlayed=matchFours=matchSixes=matchBallsPlayed=matchWicketsTaken=matchBallsBowled=matchRunsGiven=matchRunsScored=0;
         tourBallsPlayed=tourRunsScored=tourFours=tourSixes=tourBallsBowled=tourWickets=tourRunsGiven=tourOuts=0;
+        tourStrikeRate=0.0;
+        tourEconomy=0.0;
     }
 
     public static Comparator<Player> playerComparator = new Comparator<Player>() {

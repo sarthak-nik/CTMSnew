@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -40,6 +42,58 @@ public class PlayerDetails extends AppCompatActivity {
         // from shared prefs.
         loadData();
 
+        DBHandler db=new DBHandler(this);
+
+        int hRun=0,hWick=10;
+        int runs=0,wicks=0;
+        for(int j=0;j<11;j++)
+        {
+                Cursor cursor=db.getPlayerTourDetails(tournamentArrayList.get(position).name,-1,tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(j).name);
+                tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(j).tourRunsScored=cursor.getInt(3);
+                if(cursor.getInt(3)>runs){
+                    runs=cursor.getInt(3);
+                    hRun=j;
+                }
+                tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(j).tourBallsPlayed=cursor.getInt(4);
+                tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(j).tourFours=cursor.getInt(5);
+                tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(j).tourSixes=cursor.getInt(6);
+                tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(j).tourStrikeRate=cursor.getDouble(7);
+                tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(j).tourWickets=cursor.getInt(8);
+                if(cursor.getInt(8)>wicks){
+                    wicks=cursor.getInt(8);
+                    hWick=j;
+                }
+                tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(j).tourBallsBowled=cursor.getInt(9);
+                tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(j).tourRunsGiven=cursor.getInt(10);
+                tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(j).tourEconomy=cursor.getDouble(11);
+        }
+        String history="";
+        int nWins=0;
+        for(int i=tournamentArrayList.get(position).matchesArray.size()-1;i>=0;i--){
+            if(tournamentArrayList.get(position).matchesArray.get(i).team1.name.equals(tournamentArrayList.get(position).teamsArray.get(teamNum).name) ||
+                    tournamentArrayList.get(position).matchesArray.get(i).team2.name.equals(tournamentArrayList.get(position).teamsArray.get(teamNum).name)){
+                if(tournamentArrayList.get(position).matchesArray.get(i).winner.equals(tournamentArrayList.get(position).teamsArray.get(teamNum).name)){
+                    nWins++;
+                    history+="W ";
+                }
+                else history+="L ";
+            }
+        }
+        if(history.length()>10){
+            history=history.substring(0,10);
+        }
+        TextView t1=findViewById(R.id.tStats1);
+        t1.setText(tournamentArrayList.get(position).teamsArray.get(teamNum).name + " Stats");
+        t1=findViewById(R.id.teamMatchesPlayed);
+        t1.setText("Matches Played: "+Integer.toString(tournamentArrayList.get(position).teamsArray.size()-1));
+        t1=findViewById(R.id.teamMatchesWon);
+        t1.setText("Matches Won: "+Integer.toString(nWins));
+        t1=findViewById(R.id.matchHistory);
+        t1.setText("Matches History: "+history);
+        t1=findViewById(R.id.teamHighestRunScorer);
+        t1.setText("Highest Run Scorer: "+tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(hRun).name+" ("+runs+")");
+        t1=findViewById(R.id.teamHighestWicketTaker);
+        t1.setText("Highest Wicket Taker: "+tournamentArrayList.get(position).teamsArray.get(teamNum).playersList.get(hWick).name+" ("+wicks+")");
         // calling method to build
         // recycler view.
         buildRecyclerView();

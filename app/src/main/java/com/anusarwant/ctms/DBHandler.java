@@ -115,7 +115,41 @@ public class DBHandler extends SQLiteOpenHelper {
         return  cursor;
 
     }
+    public Cursor getPlayerDetails(String tournament,String player){
+        //getting our readable database
+        SQLiteDatabase db = this.getReadableDatabase();
 
+        //creating a cursor
+        Cursor cursor=db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+TOURNAMENT_COL+"=? AND "+PLAYER_COL+"=?",new String[]{tournament,player});
+
+        cursor.moveToFirst();
+
+        return  cursor;
+    }
+    public Cursor getPlayerTourDetails(String tournament,int matchnum,String player){
+        //getting our readable database
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        //creating a cursor
+        Cursor cursor=db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+TOURNAMENT_COL+"=? AND "+MATCH_COL+"=? AND "+PLAYER_COL+"=?",new String[]{tournament,Integer.toString(matchnum),player});
+
+        cursor.moveToFirst();
+
+        return  cursor;
+    }
+    public Cursor getTeamDetails(String tournament,int k){
+        //getting our readable database
+        SQLiteDatabase db = this.getReadableDatabase();
+        char tempchar='A';
+        tempchar+=k;
+        String player="Player"+tempchar;
+        //creating a cursor
+        Cursor cursor=db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+TOURNAMENT_COL+"=? AND "+PLAYER_COL+"=?",new String[]{tournament,player});
+
+        cursor.moveToFirst();
+
+        return  cursor;
+    }
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);

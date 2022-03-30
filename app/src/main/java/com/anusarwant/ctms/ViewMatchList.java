@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -125,6 +126,50 @@ public class ViewMatchList extends AppCompatActivity {
                     }
                     courseModalArrayList.get(position).matchesArray.get(i).isDone=true;
 
+                }
+
+                for(int i=0;i<courseModalArrayList.get(position).teamsArray.size();i++)
+                {
+                    for(int j=0;j<11;j++)
+                    {
+                        Cursor cursor=db.getPlayerDetails(courseModalArrayList.get(position).name,courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).name);
+                        if(cursor.getCount()==0){
+                            Toast.makeText(ViewMatchList.this,"No details found",Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+//                            courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourRunsScored=0;
+//                            courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourBallsPlayed=0;
+//                            courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourFours=0;
+//                            courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourSixes=0;
+//                            courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourWickets=0;
+//                            courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourBallsBowled=0;
+//                            courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourRunsGiven=0;
+
+                            do{
+                                courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourRunsScored+=cursor.getInt(3);
+                                courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourBallsPlayed+=cursor.getInt(4);
+                                courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourFours+=cursor.getInt(5);
+                                courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourSixes+=cursor.getInt(6);
+                                courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourWickets+=cursor.getInt(8);
+                                courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourBallsBowled+=cursor.getInt(9);
+                                courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourRunsGiven+=cursor.getInt(10);
+                            }while(cursor.moveToNext());
+
+                            db.addNewRow(courseModalArrayList.get(position).name,
+                                    -1,
+                                    courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).name,
+                                    courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourRunsScored,
+                                    courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourBallsPlayed,
+                                    courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourFours,
+                                    courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourSixes,
+                                    (courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourRunsScored*100.0)/courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourBallsPlayed,
+                                    courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourBallsBowled,
+                                    courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourWickets,
+                                    courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourRunsGiven,
+                                    (courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourRunsGiven*6.0)/courseModalArrayList.get(position).teamsArray.get(i).playersList.get(j).tourBallsBowled
+                            );
+                        }
+                    }
                 }
                 courseModalArrayList.get(position).status="Completed";
                 courseModalArrayList.get(position).iscomplete=true;
@@ -351,6 +396,7 @@ public class ViewMatchList extends AppCompatActivity {
                     //dot ball
                     battingTeam.playersList.get(onStrike).matchBallsPlayed++;
                     bowlingTeam.playersList.get(bowler).matchBallsBowled++;
+
                 }
                 else if(ballOutcome<=0.56){
                     //one run
