@@ -26,9 +26,8 @@ team and would include tournament statistics like runs scored, strike rate, aver
 5. View a match’s scorecard.
 6. View tournament statistics - five highest wicket takers, five highest run scorers etc.
 
+#### Download the [.apk file]() to use the application
 #### For more details of the software, go through the [SRS document](https://github.com/sarthak-nik/CTMSnew/blob/master/SRS%20document.pdf)
-#### [Instructions](https://github.com/sarthak-nik/CTMSnew/blob/master/Instructions.pdf)
-#### [Compilance report](https://github.com/sarthak-nik/CTMSnew/blob/master/Compliance%20Report.pdf)
-#### [Application demonstration](https://youtu.be/UAC0Tf6DZIw)
-#### [Presentation](https://github.com/sarthak-nik/CTMSnew/blob/master/Presentation.pdf)
-#### [.apk file]()
+#### Go through the [Instructions](https://github.com/sarthak-nik/CTMSnew/blob/master/Instructions.pdf) on how to use the application
+#### A short video on [Application demonstration](https://youtu.be/UAC0Tf6DZIw)
+#### Finally, the [Presentation](https://github.com/sarthak-nik/CTMSnew/blob/master/Presentation.pdf) that covers the whole project
