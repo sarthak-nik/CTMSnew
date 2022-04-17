@@ -30,4 +30,5 @@ team and would include tournament statistics like runs scored, strike rate, aver
 #### [Instructions](https://github.com/sarthak-nik/CTMSnew/blob/master/Instructions.pdf)
 #### [Compilance report](https://github.com/sarthak-nik/CTMSnew/blob/master/Compliance%20Report.pdf)
 #### [Application demonstration](https://youtu.be/UAC0Tf6DZIw)
+#### [Presentation](https://github.com/sarthak-nik/CTMSnew/blob/master/Presentation.pdf)
 #### [.apk file]()
