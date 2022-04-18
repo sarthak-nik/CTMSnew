@@ -27,6 +27,7 @@ team and would include tournament statistics like runs scored, strike rate, aver
 6. View tournament statistics - five highest wicket takers, five highest run scorers etc.
 
 
+#### Download [.apk file](https://github.com/sarthak-nik/CTMSnew/blob/master/CTMS.apk) to run the application
 #### For more details of the software, go through the [SRS document](https://github.com/sarthak-nik/CTMSnew/blob/master/SRS%20document.pdf)
 #### Go through the [Instructions](https://github.com/sarthak-nik/CTMSnew/blob/master/Instructions.pdf) on how to use the application
 #### A short video on [Application demonstration](https://youtu.be/UAC0Tf6DZIw)
